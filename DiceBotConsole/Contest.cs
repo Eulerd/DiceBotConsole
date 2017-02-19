@@ -49,6 +49,17 @@ namespace DiceBotConsole
                 return StartTime.ToString() + " - " + EndTime.ToString("HH:mm:ss");
             }
         }
+
+        /// <summary>
+        /// メッセージ内容
+        /// </summary>
+        public string Message
+        {
+            get
+            {
+                return Name + "\r\n" + StartToEnd + "\r\n" + Link;
+            }
+        }
         
         /// <summary>
         /// すべての要素を削除

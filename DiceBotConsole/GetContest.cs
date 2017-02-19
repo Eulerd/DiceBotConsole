@@ -17,7 +17,7 @@ namespace DiceBotConsole
         /// Atcoderのコンテスト情報を取得する
         /// </summary>
         /// <returns>Atcoderのコンテスト</returns>
-        public List<Contest> GetAtcoderContests()
+        public List<Contest> GetAtcoderContests(List<Contest> OldContests)
         {
             List<Contest> contests = new List<Contest>();
 
@@ -56,7 +56,7 @@ namespace DiceBotConsole
                     }
                     catch
                     {
-                        Console.WriteLine("URLが正しく読み取ることが出来ませんでした\a");
+                        Console.WriteLine("--- URLが正しく読み取ることが出来ませんでした\a");
                     }
 
                     var StartTime = ContestPage.DocumentNode.SelectSingleNode(@"/html/body/div[1]/div/div/a[2]/span[2]/time[1]");
@@ -70,7 +70,7 @@ namespace DiceBotConsole
                     contests.Add(con);
                 }
             }
-
+            
             // コンテスト名をABC,ARC,AGCに短縮
             for(int i = 0;i < contests.Count();i++)
             {
@@ -81,14 +81,25 @@ namespace DiceBotConsole
                 Names.Add("AtCoder Regular Contest", "ARC");
                 Names.Add("AtCoder Grand Contest","AGC");
 
-                for(int j = 0;j < Names.Count();i++)
+                for(int j = 0;j < Names.Count();j++)
                 {
-                    if (name.Contains(Names.ElementAt(i).Key))
-                        name = Names.ElementAt(i).Value;
+                    if (name.Contains(Names.ElementAt(j).Key))
+                    {
+                        name = Names.ElementAt(j).Value;
+                    }
                 }
 
                 contests[i].Name = name;
             }
+
+            // 既存のコンテストなら追加しない
+            for(int i = 0;i < OldContests.Count;i++)
+            {
+                contests.Remove(OldContests[i]);
+            }
+
+            // コンテストをまとめる
+            contests = SumContest(contests);
 
             return contests;
         }
@@ -113,12 +124,42 @@ namespace DiceBotConsole
             }
             catch(WebException)
             {
-                Console.WriteLine("無効なURLです\a");
+                Console.WriteLine("--- 無効なURLです\a");
             }
 
             doc.LoadHtml(html);
 
             return doc;
+        }
+
+
+        /// <summary>
+        /// 開始時間と終了時間が同じであるコンテストをまとめる
+        /// </summary>
+        /// <param name="contests">まとめたいコンテスト</param>
+        /// <returns>まとめられたコンテスト</returns>
+        private List<Contest> SumContest(List<Contest> contests)
+        {
+            for (int i = 0; i < contests.Count; i++)
+            {
+                DateTime start = contests[i].StartTime;
+                DateTime end = contests[i].EndTime;
+
+                for (int j = i + 1; j < contests.Count; j++)
+                {
+                    if (!contests[j].Name.Contains(contests[i].Name) && !contests[i].Name.Contains(contests[j].Name))
+                    {
+                        if (start == contests[j].StartTime && end == contests[i].EndTime)
+                        {
+                            contests[i].Name += " / " + contests[j].Name;
+                            contests[i].Link += "\r\n" + contests[j].Link;
+                            contests.RemoveAt(j);
+                        }
+                    }
+                }
+            }
+
+            return contests;
         }
     }
 }
