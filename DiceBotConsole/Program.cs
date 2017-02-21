@@ -18,11 +18,11 @@ namespace DiceBotConsole
 
         static GetContest GetCon = new GetContest();
         static TwitterBot bot = new TwitterBot();
+        static SlackWebHook WebHook = new SlackWebHook();
         static string xmlfilename = "Reply.xml";
 
         static void Main(string[] args)
         {
-            SlackWebHook WebHook = new SlackWebHook();
 
             // コンテストを取得して表示
             Contests.AddRange(GetCon.GetAtcoderContests(Contests));
@@ -44,6 +44,8 @@ namespace DiceBotConsole
 
             Console.WriteLine("BotStart");
 
+            bot.token.Statuses.Update("起動しました。" + DateTime.Now);
+
             // タイマー設定
             AutoResetEvent CheckAutoEve = new AutoResetEvent(false);
             AutoResetEvent AddAutoEve = new AutoResetEvent(false);
@@ -61,8 +63,6 @@ namespace DiceBotConsole
             CheckAutoEve.WaitOne(-1);
             ReplyAutoEve.WaitOne(-1);
         }
-
-        static int i = 0;
 
         /// <summary>
         /// XMLファイルから通知するユーザ名を取得する
@@ -113,6 +113,9 @@ namespace DiceBotConsole
                     }
                 }
             }
+
+            // Slackに通知
+            WebHook.Upload(Message);
         }
 
 
@@ -259,6 +262,8 @@ namespace DiceBotConsole
                             Message += Contests[i].Message;
 
                             Response(Message);
+
+                            Console.WriteLine(Message);
                         }
 
                     }

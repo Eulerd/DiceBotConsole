@@ -12,6 +12,13 @@ namespace DiceBotConsole
     {
         static string WebHookUrl = "";
 
+        public SlackWebHook()
+        {
+            Console.Write("WEBHOOKURL>");
+
+            WebHookUrl = Console.ReadLine();
+        }
+
         /// <summary>
         /// SlackBot用
         /// </summary>
