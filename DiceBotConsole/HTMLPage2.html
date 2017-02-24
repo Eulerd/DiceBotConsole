@@ -1,0 +1,350 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>縲後∩繧薙↑縺ｮ繝励Ο繧ｳ繝ｳ縲・ - 縲後∩繧薙↑縺ｮ繝励Ο繧ｳ繝ｳ縲・| AtCoder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="
+">
+    <meta name="keyword" content="AtCoder,繧｢繝・ヨ繧ｳ繝ｼ繝繝ｼ,縺ゅ▲縺ｨ縺薙・縺繝ｼ,繝励Ο繧ｰ繝ｩ繝溘Φ繧ｰ繧ｳ繝ｳ繝・せ繝・">
+    <meta name="author" content="Atcoder" />
+    <meta name="copyright" content="Copyright (C) 2012 Atcoder" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="stylesheet" type="text/css" href="/css/all.css?v=2">
+    <link rel="stylesheet" type="text/css" href="/css/print.css?v=1" media="print">
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script src="/js/jquery.js"></script>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30554866-3']);
+  _gaq.push(['_setDomainName', 'atcoder.jp']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+    </script>
+    <!--[if lt IE 9]><style>.navbar-fixed-top{ position: relative!important; }</style><![endif]-->
+
+</head>
+
+
+<body>
+    <style type="text/css">
+        html body {
+            background-color: #eaeaea !important;
+            background-image: none !important;
+        }
+
+        #contest-statement section ol li {
+            margin-top: -2ex;
+            margin-bottom: 3ex;
+            font-size: small;
+        }
+
+        .navbar-inner {
+            background-color: #e62e2e !important;
+            background-image: none !important;
+        }
+
+        .caret {
+            color: #fff !important;
+            opacity: 1 !important;
+        }
+
+        .bland-small {
+            color: #fff !important;
+        }
+
+        .navbar .divider-vertical {
+            background-color: #fff !important;
+            border-right: none;
+        }
+
+        .navbar .nav > li > a {
+            color: #fff !important;
+        }
+
+        .insert-participant-box {
+            background-color: #fff !important;
+            text-align: -webkit-center !important;
+        }
+
+            .insert-participant-box h1 {
+                font-size: 280%;
+            }
+    </style>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="/"><span class="contest-name">縲後∩繧薙↑縺ｮ繝励Ο繧ｳ繝ｳ縲・/span><span class="bland-small"><time>2017/03/05 12:00:00 +0000</time> ~ <time>2017/03/05 14:00:00 +0000</time></span></a>
+
+                <div class="nav-collapse">
+                    <ul id="nav-right-logined" class="nav pull-right" style="display:none;">
+                        <li class="dropdown">
+                            <a href="#" lang="ja" class="dropdown-toggle static-nav-language-selector-dropdown" data-toggle="dropdown" style="display:none;">
+                                <i class="flag-ja"></i> 譌･譛ｬ隱・<b class="caret"></b>
+                            </a>
+                            <a href="#" lang="en" class="dropdown-toggle static-nav-language-selector-dropdown" data-toggle="dropdown" style="display:none;">
+                                <i class="flag-en"></i> English <b class="caret"></b>
+                            </a>
+                            <a href="#" lang="ko" class="dropdown-toggle static-nav-language-selector-dropdown" data-toggle="dropdown" style="display:none;">
+                                <i class="flag-ko"></i> 﨑懋ｵｭ・ｴ <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li> <a lang="ja" class="static-nav-language-selector" href="#"><i class="flag-ja"></i> 譌･譛ｬ隱・/a></li>
+                                <li> <a lang="en" class="static-nav-language-selector" href="#"><i class="flag-en"></i> English</a></li>
+                                <li> <a lang="ko" class="static-nav-language-selector" href="#"><i class="flag-ko"></i> 﨑懋ｵｭ・ｴ</a></li>
+                            </ul>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog icon-white"></i> <span id="nav-right-username"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/me"><span class="lang"><span class="lang-en">My Profile</span><span class="lang-ja">繝槭う繝励Ο繝輔ぅ繝ｼ繝ｫ</span></span></a></li>
+                                <li><a href="/settings"><span class="lang"><span class="lang-en">Settings</span><span class="lang-ja">險ｭ螳・/span></span></a></li>
+                                <li><a href="/settings/password"><span class="lang"><span class="lang-en">Change password</span><span class="lang-ja">繝代せ繝ｯ繝ｼ繝峨・螟画峩</span></span></a></li>
+                                <li><a href="/settings/participants"><span class="lang"><span class="lang-en">Edit information</span><span class="lang-ja">蜿ょ刈逋ｻ骭ｲ諠・ｱ險ｭ螳・/span></span></a></li>
+                                <li class="divider"></li>
+                                <li><a href="/logout"><span class="lang"><span class="lang-en">Sign out</span><span class="lang-ja">繝ｭ繧ｰ繧｢繧ｦ繝・/span></span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul id="nav-right-not-login" class="nav pull-right" style="display:none;">
+                        <li class="dropdown">
+                            <a href="#" lang="ja" class="dropdown-toggle static-nav-language-selector-dropdown" data-toggle="dropdown" style="display:none;">
+                                <i class="flag-ja"></i> 譌･譛ｬ隱・<b class="caret"></b>
+                            </a>
+                            <a href="#" lang="en" class="dropdown-toggle static-nav-language-selector-dropdown" data-toggle="dropdown" style="display:none;">
+                                <i class="flag-en"></i> English <b class="caret"></b>
+                            </a>
+                            <a href="#" lang="ko" class="dropdown-toggle static-nav-language-selector-dropdown" data-toggle="dropdown" style="display:none;">
+                                <i class="flag-ko"></i> 﨑懋ｵｭ・ｴ <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li> <a lang="ja" class="static-nav-language-selector" href="#"><i class="flag-ja"></i> 譌･譛ｬ隱・/a></li>
+                                <li> <a lang="en" class="static-nav-language-selector" href="#"><i class="flag-en"></i> English</a></li>
+                                <li> <a lang="ko" class="static-nav-language-selector" href="#"><i class="flag-ko"></i> 﨑懋ｵｭ・ｴ</a></li>
+                            </ul>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li><a href="/register"><span class="lang"><span class="lang-en">Sign up</span><span class="lang-ja">譁ｰ隕冗匳骭ｲ</span></span></a></li>
+                        <li class="divider-vertical"></li>
+                        <li><a href="/login"><span class="lang"><span class="lang-en">Sign in</span><span class="lang-ja">繝ｭ繧ｰ繧､繝ｳ</span></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="outer-inner" class="container">
+        <h1 class="site-title">
+            縲後∩繧薙↑縺ｮ繝励Ο繧ｳ繝ｳ縲・
+        </h1>
+        <time style="display:none" id="contest-start-time">2017/03/05 12:00:00 +0000</time>
+        <time style="display:none" id="contest-end-time">2017/03/05 14:00:00 +0000</time>
+        <time style="display:none" id="server-current-time">2017/02/24 15:09:01 +0000</time>
+
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="http://yahoo-procon2017-qual.contest.atcoder.jp/"><i class="icon-home"></i> <span class="lang"><span class="lang-en">Home</span><span class="lang-ja">繝医ャ繝励・繝ｼ繧ｸ</span><span class="lang-ko">奝ｱ 寬們擽・</span></span></a></li>
+            <li><a href="http://yahoo-procon2017-qual.contest.atcoder.jp/assignments"><i class="icon-list-alt"></i> <span class="lang"><span class="lang-en">Tasks</span><span class="lang-ja">蝠城｡・/span><span class="lang-ko">・ｸ・・/span></span></a></li>
+            <li><a href="https://yahoo-procon2017-qual.contest.atcoder.jp/submit"><i class="icon-upload"></i> <span class="lang"><span class="lang-en">Submit</span><span class="lang-ja">謠仙・</span><span class="lang-ko">・懍ｶ・/span></span></a></li>
+            <li><a href="http://yahoo-procon2017-qual.contest.atcoder.jp/clarifications"><i class="icon-question-sign"></i> <span class="lang"><span class="lang-en">Clarifications</span><span class="lang-ja">雉ｪ蝠・/span><span class="lang-ko">・壱ｬｸ</span></span></a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <b class="caret"></b><i class="icon-download-alt"></i> <span class="lang"><span class="lang-en">Results</span><span class="lang-ja">邨先棡</span><span class="lang-ko">・・・・ｰ・ｼ</span></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="https://yahoo-procon2017-qual.contest.atcoder.jp/submissions/me"><span class="lang"><span class="lang-en">My submissions</span><span class="lang-ja">閾ｪ蛻・・邨先棡</span><span class="lang-ko">・川侠・・・ｰ・ｼ</span></span></a></li>
+                </ul>
+            </li>
+        </ul>
+        <div id="alert_box" class="alert alert-block" style="display:none">
+            <a class="close" data-dismiss="alert">
+                ﾃ・/a>
+                <h4 id="alert_box_heading" class="alert-heading" style="display:none"></h4>
+                <p id="alert_box_content"></p>
+        </div>
+
+
+        <div class="insert-participant-box">
+            <h1>
+                縲後∩繧薙↑縺ｮ繝励Ο繧ｳ繝ｳ縲・/h1>
+                <p class="insert-participant"><a href="/participants/insert"><button class="btn btn-primary btn-large"><span class="lang"><span class="lang-en">Join in 縲後∩繧薙↑縺ｮ繝励Ο繧ｳ繝ｳ縲・/span><span class="lang-ja">縲後∩繧薙↑縺ｮ繝励Ο繧ｳ繝ｳ縲・縺ｫ蜿ょ刈縺吶ｋ</span></span></button></a></p>
+                <p class="insert-participant-notice"><span class="lang"><span class="lang-en"></span><span class="lang-ja"></span></span></p>
+        </div>
+
+
+
+        <div id="contest-statement">
+            <script>
+    $(function(){
+        //繧ｳ繝ｳ繝・せ繝亥錐繧堤ｽｮ謠・
+        $('.insert-participant-box h1').html('<img src="https://atcoder.jp/img/yahoo-procon2017-qual/logo.png">');
+        $('.insert-participant-box').css('text-align','center');
+    });
+            </script>
+
+            <style>
+                p {
+                    font-size: medium;
+                }
+            </style>
+
+            <h2>
+                讎りｦ・/h2>
+                <section>
+                    <p>
+                        蠖薙さ繝ｳ繝・せ繝医・縲√Ζ繝輔・荳ｻ蛯ｬ縺ｮ繝励Ο繧ｰ繝ｩ繝溘Φ繧ｰ繧ｳ繝ｳ繝・せ繝医〒縺吶・
+                    </p>
+                    <p>
+                        繝励Ο繧ｰ繝ｩ繝溘Φ繧ｰ縺ｮ豁｣遒ｺ縺輔→縲√い繝ｫ繧ｴ繝ｪ繧ｺ繝蜉帙〒遶ｶ縺・∝倶ｺｺ謌ｦ縺ｮ遶ｶ謚縺ｧ縺ｯ縺ゅｊ縺ｾ縺吶′縲∝・蝗ｽ縺ｮ繝励Ο繧ｰ繝ｩ繝溘Φ繧ｰ縺悟･ｽ縺阪↑莠ｺ縺溘■縺梧･ｽ縺励ａ繧九さ繝ｳ繝・せ繝医↓縺ｪ縺｣縺ｦ縺・∪縺吶・
+                    </p>
+                    <p>
+                        莠磯∈繝ｻ譛ｬ驕ｸ縺ｮ莠碁Κ讒区・縺ｨ縺ｪ繧翫∵悽驕ｸ縺ｯ繝､繝輔・譛ｬ遉ｾ縺ｧ陦後＞縺ｾ縺吶ゅ後∩繧薙↑縺ｮ繝励Ο繧ｳ繝ｳ縲阪∫払縺励※縲後∩繧薙・繧阪・ #縺ｿ繧薙・繧・)縺ｨ蜻ｼ繧薙〒縺上□縺輔＞・・
+                    </p>
+                    縲<p>
+                        Twitter・咫minpro_yahoo
+                        縲
+                    </p>
+                </section>
+
+                <hr />
+
+                <h2>譛ｬ驕ｸ蜿ょ刈譫</h2>
+                <section>
+                    <p>
+                        莠磯∈縲∵悽驕ｸ蜈ｱ縺ｫ縲∝ｹｴ鮨｢繝ｻ謇螻槫撫繧上★蜿ょ刈縺吶ｋ縺薙→縺後〒縺阪∪縺吶ょｼ顔､ｾ隕丞ｮ夐｡阪・莠､騾夊ｲｻ謾ｯ邨ｦ縲・
+                    </p>
+
+                    <p>
+                        縺溘□縺玲悽驕ｸ縺ｯ縲∽ｺ磯∈縺ｮ謌千ｸｾ縺ｫ繧医ｊ縲∽ｻ･荳九・譚｡莉ｶ縺ｧ35蜷阪ｒ驕ｸ蜃ｺ縺・◆縺励∪縺吶つ
+                    </p>
+
+                    <p>
+                        莉･荳九・譚｡莉ｶ縺ｧ謌千ｸｾ荳贋ｽ崎・ｒ35蜷阪窶ｻ蜈ｨ莠磯∈蜿ょ刈閠・′蟇ｾ雎｡縺ｫ縺ｪ繧翫∪縺吶・
+                    </p>
+
+                    <ol>
+                        <li>
+                            遉ｾ莨壻ｺｺ・・蜷・
+                            <ul style="margin-top: 10px; margin-bottom: 10px;">
+                                <li>驕譁ｹ繧医ｊ縺泌盾蜉縺ｮ蝣ｴ蜷井ｺ､騾夊ｲｻ縺ゅｊ</li>
+                            </ul>
+                        </li>
+                        <li>
+                            鬮伜ｰら函(4・・蟷ｴ逕・縲∝ｰよ判遘醍函縲∝､ｧ蟄ｦ逕溘∝､ｧ蟄ｦ髯｢逕滂ｼ・5蜷・
+                            <ul style="margin-top: 10px; margin-bottom: 10px;">
+                                <li>驕譁ｹ繧医ｊ縺泌盾蜉縺ｮ蝣ｴ蜷井ｺ､騾夊ｲｻ縺ゅｊ</li>
+                            </ul>
+                        </li>
+                        <li>
+                            荳ｭ蟄ｦ逕溘・ｫ俶｡逕溘・ｫ伜ｰら函(1・・蟷ｴ)莉･荳具ｼ・蜷・
+                            <ul style="margin-top: 10px; margin-bottom: 10px;">
+                                <li>驕譁ｹ繧医ｊ縺泌盾蜉縺ｮ蝣ｴ蜷井ｺ､騾夊ｲｻ縺ゅｊ縲・/li>
+                                <li>譛ｬ驕ｸ縺ｸ縺ｮ蜿ょ刈縺ｫ縺ｯ縲∽ｿ晁ｭｷ閠・・蜷梧э縺悟ｿ・ｦ√↓縺ｪ繧翫∪縺吶・/li>
+                            </ul>
+                        </li>
+                    </ol>
+                </section>
+
+                <hr />
+
+                <h2>
+                    雉・/h2>
+                    <section>
+                        <p>
+                            莠磯∈荳贋ｽ崎・↓縺ｯ縲√Ζ繝輔・譛ｬ遉ｾ縺ｧ陦後≧譛ｬ驕ｸ縺ｫ縺泌盾蜉縺・◆縺縺阪∪縺吶ゅ(蠑顔､ｾ隕丞ｮ夐｡阪・莠､騾夊ｲｻ謾ｯ邨ｦ)
+                        </p>
+
+                        <p>
+                            譛ｬ驕ｸ縺ｮ謌千ｸｾ縺ｫ繧医ｊ縲∬ｳ槭ｒ縺皮畑諢上＠縺ｦ縺翫ｊ縺ｾ縺吶・
+                        </p>
+                    </section>
+
+                    <hr />
+
+                    <h2>繧ｹ繧ｱ繧ｸ繝･繝ｼ繝ｫ</h2>
+                    <section>
+                        <ol>
+                            <li>莠磯∈・・017蟷ｴ3譛・譌･(譌･)縲21:00 ~ 23:00</li>
+                            <li>譛ｬ驕ｸ・・017蟷ｴ3譛・5譌･(蝨・ 14:00 ~ 18:00</li>
+                        </ol>
+                    </section>
+
+                    <hr />
+
+                    <h2>蜿ょ刈雉・ｼ縺ｫ縺､縺・※</h2>
+                    <section>
+                        <p>
+                            AtCoder縺ｮ繧｢繧ｫ繧ｦ繝ｳ繝医ｒ縺頑戟縺｡縺ｮ譁ｹ縺ｧ縺ゅｌ縺ｰ縲√←縺ｪ縺溘〒繧ゅ＃蜿ょ刈縺・◆縺縺代∪縺吶・
+                            蠑顔､ｾ隕丞ｮ壹↓繧医ｊ莠､騾夊ｲｻ縺ｮ謾ｯ邨ｦ繧定｡後＞縺ｾ縺吶′縲∵悽驕ｸ蜿ょ刈譎ゅ↓譌･譛ｬ蝨ｨ菴上・譁ｹ縺ｫ髯舌ｊ縺ｾ縺吶・
+                        </p>
+                    </section>
+
+                    <hr />
+
+                    <h2>繝ｫ繝ｼ繝ｫ</h2>
+                    <section>
+                        <ul>
+                            <li>遶ｶ謚髢句ｧ九→蜷梧凾縺ｫ縲∬､・焚縺ｮ髮｣譏灘ｺｦ縺ｮ蝠城｡後′謠千､ｺ縺輔ｌ縺ｾ縺吶ょ盾蜉閠・・縺昴・蝠城｡後ｒ閾ｪ逕ｱ縺ｪ鬆・ｺ上〒縲∬ｧ｣縺・※縺・″縺ｾ縺吶・/li>
+                            <li>蝗樒ｭ斐・豁｣遒ｺ諤ｧ縺ｫ繧医ｊ蠕礼せ縺後▽縺代ｉ繧後∝粋險亥ｾ礼せ縺ｨ謠仙・縺ｾ縺ｧ縺ｫ縺九°縺｣縺滓凾髢薙↓繧医▲縺ｦ鬆・ｽ阪ｒ莉倥￠縺ｾ縺吶・/li>
+                            <li>隱､遲斐・繝翫Ν繝・ぅ縺ｯ5蛻・〒縺吶ょ粋險医・繝翫Ν繝・ぅ縺ｯ縲∵怙蠕後↓轤ｹ謨ｰ縺悟｢励∴縺滓署蜃ｺ縺ｮ譎る俣縺九ｉ邂怜・縺輔ｌ縺ｾ縺吶・/li>
+                        </ul>
+                    </section>
+
+                    <hr />
+
+                    <h1>驟咲せ</h1>
+                    <section>
+                        <p>
+                            蠕梧律蜈ｬ髢倶ｺ亥ｮ・
+                        </p>
+                    </section>
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+    <footer>
+        <ul>
+            <li><a href="/personal"><span class="lang"><span class="lang-en">Personal Information</span><span class="lang-ja">蛟倶ｺｺ諠・ｱ菫晁ｭｷ譁ｹ驥・/span></span></a></li>
+            <li><a href="/tutorial"><span class="lang"><span class="lang-en">Tutorial</span><span class="lang-ja">繝√Η繝ｼ繝医Μ繧｢繝ｫ</span></span></a></li>
+            <li><a href="/rules"><span class="lang"><span class="lang-en">Rules</span><span class="lang-ja">繝ｫ繝ｼ繝ｫ</span></span></a></li>
+            <li><a href="/glossary"><span class="lang"><span class="lang-en">Glossary</span><span class="lang-ja">逕ｨ隱樣寔</span></span></a></li>
+            <li><a href="/faq"><span class="lang"><span class="lang-en">FAQ</span><span class="lang-ja">繧医￥縺ゅｋ雉ｪ蝠・/span></span></a></li>
+        </ul>
+        <p id="copyright">Powered by <a href="http://atcoder.jp">AtCoder.</a></p>
+    </footer>
+
+    <p id="fixed-server-timer" style="display: none;"></p>
+
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/prettify.js"></script>
+    <script src="/js/lang-vb.js"></script>
+    <script src="/js/lang-hs.js"></script>
+    <script src="/js/varmath.js"></script>
+    <script src="/js/script.js?v=2"></script>
+</body>
+</html>

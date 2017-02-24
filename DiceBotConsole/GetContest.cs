@@ -48,10 +48,11 @@ namespace DiceBotConsole
                     // 開始時間と終了時間を取得
                     ContestPage = new HtmlDocument();
 
+                    string html = "";
                     try
                     {
                         WebClient wc = new WebClient();
-                        string html = wc.DownloadString(con.Link + "/?lang=ja");
+                        html = wc.DownloadString(con.Link);
                         ContestPage.LoadHtml(html);
                     }
                     catch
@@ -59,15 +60,30 @@ namespace DiceBotConsole
                         Console.WriteLine("--- URLが正しく読み取ることが出来ませんでした\a");
                     }
 
-                    var StartTime = ContestPage.DocumentNode.SelectSingleNode(@"/html/body/div[1]/div/div/a[2]/span[2]/time[1]");
-                    var EndTime = ContestPage.DocumentNode.SelectSingleNode(@"/html/body/div[1]/div/div/a[2]/span[2]/time[2]");
+                    try
+                    {
+                        var StartTime = ContestPage.DocumentNode.SelectSingleNode(@"//*[@id='contest-start-time']");
+                        var EndTime = ContestPage.DocumentNode.SelectSingleNode(@"//*[@id='contest-end-time']");
+                        
+                        // 開始時間と終了時間を追加
+                        con.StartTime = DateTime.Parse(StartTime.InnerText);
+                        con.EndTime = DateTime.Parse(EndTime.InnerText);
+                        
+                        // 新しいコンテストを追加
+                        contests.Add(con);
 
-                    // 開始時間と終了時間を追加
-                    con.StartTime = DateTime.Parse(StartTime.InnerText);
-                    con.EndTime = DateTime.Parse(EndTime.InnerText);
-
-                    // 新しいコンテストを追加
-                    contests.Add(con);
+                        Console.WriteLine(con.Name);
+                        Console.WriteLine(con.StartToEnd);
+                        Console.WriteLine(con.Link);
+                        Console.WriteLine("-----");
+                    }
+                    catch(NullReferenceException)
+                    {
+                        Console.WriteLine("コンテストを追加できませんでした。");
+                        Console.WriteLine(" ------- " + con.Name);
+                        Console.WriteLine(" ------- " + con.Link);
+                        Console.WriteLine(" ------- " + con.StartToEnd);
+                    }
                 }
             }
             

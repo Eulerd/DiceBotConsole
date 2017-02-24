@@ -28,15 +28,7 @@ namespace DiceBotConsole
             Contests.AddRange(GetCon.GetAtcoderContests(Contests));
 
             Console.WriteLine("GetAtcoderContest");
-
-            Console.WriteLine("Contests : ");
-            for(int i = 0;i < Contests.Count();i++)
-            {
-                Console.WriteLine(Contests[i].Name);
-                Console.WriteLine(Contests[i].StartToEnd);
-                Console.WriteLine(Contests[i].Link);
-                Console.WriteLine("-----");
-            }
+            
 
             // TwitterBotを開始
 

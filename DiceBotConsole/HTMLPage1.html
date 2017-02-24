@@ -1,0 +1,627 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>
+        Mujin Programming Challenge 2017
+        - Mujin Programming Challenge 2017 | AtCoder
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="
+">
+    <meta name="keyword" content="AtCoder,繧｢繝・ヨ繧ｳ繝ｼ繝繝ｼ,縺ゅ▲縺ｨ縺薙・縺繝ｼ,繝励Ο繧ｰ繝ｩ繝溘Φ繧ｰ繧ｳ繝ｳ繝・せ繝・">
+    <meta name="author" content="Atcoder" />
+    <meta name="copyright" content="Copyright (C) 2012 Atcoder" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="stylesheet" type="text/css" href="/css/all.css?v=2">
+    <link rel="stylesheet" type="text/css" href="/css/print.css?v=1" media="print">
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script src="/js/jquery.js"></script>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30554866-3']);
+  _gaq.push(['_setDomainName', 'atcoder.jp']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+    </script>
+    <!--[if lt IE 9]><style>.navbar-fixed-top{ position: relative!important; }</style><![endif]-->
+
+</head>
+
+
+<body>
+    <style type="text/css">
+        h1 {
+            font-size: 20px;
+        }
+
+        .mujin {
+            color: #FF6633;
+        }
+
+        a {
+            color: #FF0000;
+            text-decoration: none;
+        }
+
+        img {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        #table {
+            display: table;
+        }
+
+        .rowmujin {
+            display: table-row;
+        }
+
+            .rowmujin div {
+                display: table-cell;
+                margin: 8px 20px;
+                padding: 4px;
+                border: 2px solid;
+                border-color: #ffffff;
+                background: #ccc;
+            }
+
+        h2 {
+            font-size: 16px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            padding-top: 0;
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+
+            .video-container iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+        #clockdiv {
+            font-family: sans-serif;
+            color: #00000;
+            display: inline-block;
+            font-weight: 200;
+            text-align: center;
+            font-size: 30px;
+        }
+
+            #clockdiv > div {
+                padding: 5px;
+                border-radius: 3px;
+                background: #ff5a00;
+                display: inline-block;
+            }
+
+            #clockdiv div > p {
+                padding: 16px;
+                font-size: 20px;
+                border-radius: 3px;
+                background: #ffffff;
+                font-weight: 500;
+                display: inline-block;
+            }
+
+        .smalltext {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        video {
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .bgoverwite {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: #ffa500;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+        }
+
+        .videotitle {
+            font-size: 3.75rem;
+            color: #ffffff;
+            z-index: 1;
+        }
+
+        .homeConcept {
+            margin: 0 auto;
+            width: 100%;
+            min-height: 410px;
+            text-align: center;
+            color: #000;
+            letter-spacing: 2px;
+        }
+
+        .homeConcept-title {
+            font-size: 3.75rem;
+        }
+
+        .homeConcept-txt {
+            margin: 0 auto 100px;
+            width: 60%;
+            text-align: left;
+            font-size: 1rem;
+            text-align: justify;
+        }
+    </style>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="/"><span class="contest-name">Mujin Programming Challenge 2017</span><span class="bland-small"><time>2017/02/25 12:00:00 +0000</time> ~ <time>2017/02/25 14:00:00 +0000</time></span></a>
+
+                <div class="nav-collapse">
+                    <ul id="nav-right-logined" class="nav pull-right" style="display:none;">
+                        <li class="dropdown">
+                            <a href="#" lang="ja" class="dropdown-toggle static-nav-language-selector-dropdown" data-toggle="dropdown" style="display:none;">
+                                <i class="flag-ja"></i> 譌･譛ｬ隱・<b class="caret"></b>
+                            </a>
+                            <a href="#" lang="en" class="dropdown-toggle static-nav-language-selector-dropdown" data-toggle="dropdown" style="display:none;">
+                                <i class="flag-en"></i> English <b class="caret"></b>
+                            </a>
+                            <a href="#" lang="ko" class="dropdown-toggle static-nav-language-selector-dropdown" data-toggle="dropdown" style="display:none;">
+                                <i class="flag-ko"></i> 﨑懋ｵｭ・ｴ <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li> <a lang="ja" class="static-nav-language-selector" href="#"><i class="flag-ja"></i> 譌･譛ｬ隱・/a></li>
+                                <li> <a lang="en" class="static-nav-language-selector" href="#"><i class="flag-en"></i> English</a></li>
+                                <li> <a lang="ko" class="static-nav-language-selector" href="#"><i class="flag-ko"></i> 﨑懋ｵｭ・ｴ</a></li>
+                            </ul>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog icon-white"></i> <span id="nav-right-username"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/me"><span class="lang"><span class="lang-en">My Profile</span><span class="lang-ja">繝槭う繝励Ο繝輔ぅ繝ｼ繝ｫ</span></span></a></li>
+                                <li><a href="/settings"><span class="lang"><span class="lang-en">Settings</span><span class="lang-ja">險ｭ螳・/span></span></a></li>
+                                <li><a href="/settings/password"><span class="lang"><span class="lang-en">Change password</span><span class="lang-ja">繝代せ繝ｯ繝ｼ繝峨・螟画峩</span></span></a></li>
+                                <li><a href="/settings/participants"><span class="lang"><span class="lang-en">Edit information</span><span class="lang-ja">蜿ょ刈逋ｻ骭ｲ諠・ｱ險ｭ螳・/span></span></a></li>
+                                <li class="divider"></li>
+                                <li><a href="/logout"><span class="lang"><span class="lang-en">Sign out</span><span class="lang-ja">繝ｭ繧ｰ繧｢繧ｦ繝・/span></span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul id="nav-right-not-login" class="nav pull-right" style="display:none;">
+                        <li class="dropdown">
+                            <a href="#" lang="ja" class="dropdown-toggle static-nav-language-selector-dropdown" data-toggle="dropdown" style="display:none;">
+                                <i class="flag-ja"></i> 譌･譛ｬ隱・<b class="caret"></b>
+                            </a>
+                            <a href="#" lang="en" class="dropdown-toggle static-nav-language-selector-dropdown" data-toggle="dropdown" style="display:none;">
+                                <i class="flag-en"></i> English <b class="caret"></b>
+                            </a>
+                            <a href="#" lang="ko" class="dropdown-toggle static-nav-language-selector-dropdown" data-toggle="dropdown" style="display:none;">
+                                <i class="flag-ko"></i> 﨑懋ｵｭ・ｴ <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li> <a lang="ja" class="static-nav-language-selector" href="#"><i class="flag-ja"></i> 譌･譛ｬ隱・/a></li>
+                                <li> <a lang="en" class="static-nav-language-selector" href="#"><i class="flag-en"></i> English</a></li>
+                                <li> <a lang="ko" class="static-nav-language-selector" href="#"><i class="flag-ko"></i> 﨑懋ｵｭ・ｴ</a></li>
+                            </ul>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li><a href="/register"><span class="lang"><span class="lang-en">Sign up</span><span class="lang-ja">譁ｰ隕冗匳骭ｲ</span></span></a></li>
+                        <li class="divider-vertical"></li>
+                        <li><a href="/login"><span class="lang"><span class="lang-en">Sign in</span><span class="lang-ja">繝ｭ繧ｰ繧､繝ｳ</span></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="outer-inner" class="container">
+        <h1 class="site-title">
+            Mujin Programming Challenge 2017
+        </h1>
+        <time style="display:none" id="contest-start-time">2017/02/25 12:00:00 +0000</time>
+        <time style="display:none" id="contest-end-time">2017/02/25 14:00:00 +0000</time>
+        <time style="display:none" id="server-current-time">2017/02/24 15:06:32 +0000</time>
+
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="http://mujin-pc-2017.contest.atcoder.jp/"><i class="icon-home"></i> <span class="lang"><span class="lang-en">Home</span><span class="lang-ja">繝医ャ繝励・繝ｼ繧ｸ</span><span class="lang-ko">奝ｱ 寬們擽・</span></span></a></li>
+            <li><a href="http://mujin-pc-2017.contest.atcoder.jp/assignments"><i class="icon-list-alt"></i> <span class="lang"><span class="lang-en">Tasks</span><span class="lang-ja">蝠城｡・/span><span class="lang-ko">・ｸ・・/span></span></a></li>
+            <li><a href="https://mujin-pc-2017.contest.atcoder.jp/submit"><i class="icon-upload"></i> <span class="lang"><span class="lang-en">Submit</span><span class="lang-ja">謠仙・</span><span class="lang-ko">・懍ｶ・/span></span></a></li>
+            <li><a href="http://mujin-pc-2017.contest.atcoder.jp/clarifications"><i class="icon-question-sign"></i> <span class="lang"><span class="lang-en">Clarifications</span><span class="lang-ja">雉ｪ蝠・/span><span class="lang-ko">・壱ｬｸ</span></span></a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <b class="caret"></b><i class="icon-download-alt"></i> <span class="lang"><span class="lang-en">Results</span><span class="lang-ja">邨先棡</span><span class="lang-ko">・・・・ｰ・ｼ</span></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="https://mujin-pc-2017.contest.atcoder.jp/submissions/me"><span class="lang"><span class="lang-en">My submissions</span><span class="lang-ja">閾ｪ蛻・・邨先棡</span><span class="lang-ko">・川侠・・・ｰ・ｼ</span></span></a></li>
+                </ul>
+            </li>
+        </ul>
+        <div id="alert_box" class="alert alert-block" style="display:none">
+            <a class="close" data-dismiss="alert">
+                ﾃ・/a>
+                <h4 id="alert_box_heading" class="alert-heading" style="display:none"></h4>
+                <p id="alert_box_content"></p>
+        </div>
+
+
+        <div class="insert-participant-box">
+            <h1>Mujin Programming Challenge 2017</h1>
+            <p class="insert-participant"><a href="/participants/insert"><button class="btn btn-primary btn-large"><span class="lang"><span class="lang-en">Join in Mujin Programming Challenge 2017</span><span class="lang-ja">Mujin Programming Challenge 2017 縺ｫ蜿ょ刈縺吶ｋ</span></span></button></a></p>
+            <p class="insert-participant-notice"><span class="lang"><span class="lang-en"></span><span class="lang-ja"></span></span></p>
+        </div>
+
+
+
+        <div id="contest-statement">
+            <div id="fb-root"></div>
+            <script type="text/javascript" src="https://vk.com/js/api/share.js?94" charset="windows-1251"></script>
+
+            <script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=207915079286947";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+            <script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+            </script>
+
+            <a href="http://mujin.co.jp/jobs/en" target="_blank">
+                <video autoplay loop poster="http://mujin.co.jp/files/main.jpg">
+                    <source src="http://mujin.co.jp/files/main.mp4" type="video/mp4">
+                    <p>蜍慕判繧貞・逕溘☆繧九↓縺ｯ縲」ideo繧ｿ繧ｰ繧偵し繝昴・繝医＠縺溘ヶ繝ｩ繧ｦ繧ｶ縺悟ｿ・ｦ√〒縺吶・/p>
+                </video>
+            </a>
+
+            <div class="bgoverwite">
+            </div>
+            <br><br>
+
+            <!-- Facebook Share -->
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//mujin-pc-2017.contest.atcoder.jp" target="_blank"><img src="http://mujin.co.jp/files/facebookSharel.png" width="80" alt="Share on Facebook"></a>
+            <br>
+
+            <!-- linkeedIn Share -->
+            <a href="http://www.linkedin.com/shareArticle?mini=true&url=https://mujin-pc-2017.contest.atcoder.jp&title=Mujin Programming Challenge 2017 will be held on Saturday 9PM - 11PM (JST GMT+9) February 25th, 2017! Win US$2000 and interviews!
+" target="_blank"><img src="http://mujin.co.jp/files/linkedInShare.png" width="70" alt="Share on LinkedIn"></a>
+            <br><br>
+
+            <!-- Twitter Share -->
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://mujin-pc-2017.contest.atcoder.jp/" data-text="Mujin Programming Challenge 2017 will be held on Saturday 9PM - 11PM (JST GMT+9) February 25th, 2017! Win US$2000 and interviews!">Tweet</a>
+            <br><br>
+
+            <script type="text/javascript">
+<!--
+document.write(VK.Share.button({url: "http://mujin-pc-2017.contest.atcoder.jp"},{type: "round", text: "Share"}));
+--></script>
+            <br>
+
+            <h1><span class="lang"><span class="lang-ja">繧ｳ繝ｳ繝・せ繝磯幕蟋九∪縺ｧ縺ゅ→(JST)</span><span class="lang-en">Contest Starts in (JST GMT+9)</span></span></h1>
+            <div id="clockdiv">
+
+                <div>
+                    <p class="days"></p>
+                    <div class="smalltext"><span class="lang"><span class="lang-ja">譌･</span><span class="lang-en">Days</span></span></div>
+                </div>
+                <div>
+                    <p class="hours"></p>
+                    <div class="smalltext"><span class="lang"><span class="lang-ja">譎る俣</span><span class="lang-en">Hours</span></span></div>
+                </div>
+                <div>
+                    <p class="minutes" class="lang"></p>
+                    <div class="smalltext"><span class="lang"><span class="lang-ja">蛻・/span><span class="lang-en">Minutes</span></span></div>
+                </div>
+                <div>
+                    <p class="seconds"></p>
+                    <div class="smalltext"><span class="lang"><span class="lang-ja">遘・/span><span class="lang-en">Seconds</span></span></div>
+                </div>
+            </div>
+
+            <br><br><br>
+
+            <h1 class="lang"><span class="lang-ja">讎りｦ・/span><span class="lang-en">Introduction</span></h1>
+
+            <p class="lang">
+                <span class="lang-ja">
+                    <strong>MUJIN Programming Challenge 2017</strong><br>
+                    <strong>2017蟷ｴ2譛・5譌･(蝨・ 21譎ゑｽ・3譎・譌･譛ｬ譎る俣)</strong><br>
+                    縺薙・繧ｳ繝ｳ繝・せ繝医・縲∵ｪ蠑丈ｼ夂､ｾ<strong><span class="mujin"><a target="_blank" href="http://mujin.co.jp/jobs/jp">MUJIN</a></span></strong>縺御ｸｻ蛯ｬ縺吶ｋ蛟倶ｺｺ謌ｦ縺ｮ繧ｪ繝ｳ繝ｩ繧､繝ｳ繝励Ο繧ｰ繝ｩ繝溘Φ繧ｰ繧ｳ繝ｳ繝・せ繝医〒縺吶・br>
+                    蟄ｦ逕溘・遉ｾ莨壻ｺｺ繝ｻ蟷ｴ鮨｢繝ｻ謇螻樒ｭ峨ｒ蝠上ｏ縺壹√←縺ｪ縺溘〒繧ょ盾蜉縺吶ｋ縺薙→縺後〒縺阪∪縺吶・strong><span class="縺薙■繧・><a target="_blank" href="http://mujin-pc-2017.contest.atcoder.jp/participants/insert">縺薙■繧・/a></span></strong>縺九ｉ莠句燕逋ｻ骭ｲ縺上□縺輔＞縲・br>
+                    2016蟷ｴ縺ｮ繧ｳ繝ｳ繝・せ繝医↓縺ｯ縲・繧ｫ蝗ｽ縺九ｉ邏・30蜷阪・蜿ょ刈縺後≠繧翫∪縺励◆縲・<strong><span class="蜑榊屓縺ｮ蝠城｡・><a target=" _blank" href="https://mujin-pc-2016.contest.atcoder.jp/assignments">蜑榊屓縺ｮ蝠城｡・/a></span></strong> <strong><span class="蜑榊屓縺ｮ鬆・ｽ・><a target="_blank" href="https://mujin-pc-2016.contest.atcoder.jp/standings">蜑榊屓縺ｮ鬆・ｽ・/a></span></strong>
+                </span>
+
+                <span class="lang-en">
+                    <strong><span class="mujin"><a target="_blank" href="http://mujin.co.jp/jobs/en">Mujin</a></span> Programming Challenge 2017</strong><br>
+                    <strong>Time</strong><br>
+                    Saturday 9PM - 11PM (Japan Standard Time, GMT+9), February 25th, 2017<br>
+                    Please click <strong><span class="here"><a target="_blank" href="http://mujin-pc-2017.contest.atcoder.jp/participants/insert">here</a></span></strong> for pre-registration!<br><br>
+                    <strong>Eligibility</strong><br>
+                    Whether you are a student or not, anyone is welcome to participate!<br><br>
+                    <strong>Language</strong><br>
+                    The problems will be in both English and Japanese.<br><br>
+
+                    <strong>History</strong><br>
+                    630 coders from 7 countries participated in Mujin Programming
+                    Challenge 2016.<br>
+                    <strong><a target="_blank" href="https://mujin-pc-2016.contest.atcoder.jp/assignments">Problems from 2016</a></strong><br><strong><a target="_blank" href="https://mujin-pc-2016.contest.atcoder.jp/standings">Standings from 2016</a></strong>
+                </span>
+            </p>
+
+            <h1 class="lang">
+                <span class="lang-ja">雉樣≡</span>
+                <span class="lang-en">Prizes</span>
+            </h1>
+
+            <p class="lang">
+                <span class="lang-ja">
+                    1菴阪↓縺ｯ2,000邀ｳ繝峨Ν縲・菴阪°繧・0菴阪∪縺ｧ雉樣≡繧偵＃逕ｨ諢上＠縺ｦ縺・∪縺吶ゅ∪縺滉ｸ贋ｽ崎・〒蠑顔､ｾ縺ｧ縺ｮ莉穂ｺ九↓闊亥袖縺後≠繧区婿縺ｯ縲∝ｼ顔､ｾ縺ｮ繧ｨ繝ｳ繧ｸ繝九い縺ｨ髱｢隲・＞縺溘□縺代∪縺吶・/span>
+
+                    <span class="lang-en">
+                        There are cash prizes for top participants. In addition, we offer on-site interviews for internships and full-time opportunities in Tokyo!
+                    </span>
+
+                    <div id="table">
+                        <div class="rowmujin">
+                            <div class="lang"><span class="lang-ja">1菴・/span><span class="lang-en">1st place</span></div>
+                            <div class="lang"><span class="lang-ja">2,000邀ｳ繝峨Ν</span><span class="lang-en">US $2,000</span></div>
+                        </div>
+                        <div class="rowmujin">
+                            <div class="lang"><span class="lang-ja">2菴・/span><span class="lang-en">2nd place</span></div>
+                            <div class="lang"><span class="lang-ja">700邀ｳ繝峨Ν</span><span class="lang-en">US $700</span></div>
+                        </div>
+                        <div class="rowmujin">
+                            <div class="lang"><span class="lang-ja">3菴・/span><span class="lang-en">3rd place</span></div>
+                            <div class="lang"><span class="lang-ja">500邀ｳ繝峨Ν</span><span class="lang-en">US $500</span></div>
+                        </div>
+                        <div class="rowmujin">
+                            <div class="lang"><span class="lang-ja">4菴搾ｽ・0菴・/span><span class="lang-en">4th - 10th place</span></div>
+                            <div class="lang"><span class="lang-ja">300邀ｳ繝峨Ν</span><span class="lang-en">US $300</span></div>
+                        </div>
+                        <div class="rowmujin">
+                            <div class="lang"><span class="lang-ja">11菴搾ｽ・0菴・/span><span class="lang-en">11th - 20th place</span></div>
+                            <div class="lang"><span class="lang-ja">200邀ｳ繝峨Ν</span><span class="lang-en">US $200</span></div>
+                        </div>
+                        <div class="rowmujin">
+                            <div class="lang"><span class="lang-ja">21菴搾ｽ・0菴・/span><span class="lang-en">21st - 30th place</span></div>
+                            <div class="lang"><span class="lang-ja">100邀ｳ繝峨Ν</span><span class="lang-en">US $100</span></div>
+                        </div>
+                    </div>
+            <p>
+            <p class="lang">
+                <span class="lang-ja">
+                    繝峨Ν縺九ｉ蜀・∈縺ｮ謠帷ｮ励・縲・邀ｳ繝峨Ν=110蜀・→縺励∪縺吶・/span>
+                    <span class="lang-en"></span>
+                    <br><br>
+            <p>
+            <p class="lang">
+                <span class="lang-ja">
+                    縺ｾ縺溘∽ｻ雁屓縺ｯ雉樣≡蜿鈴倩・〒縺ｪ縺上※繧ゅ・00菴阪∪縺ｧ縺ｮ譁ｹ繧偵∽ｻ･荳九・蜀・ｮｹ縺ｮMUJIN邏ｹ莉九ヤ繧｢繝ｼ縺ｫ諡帛ｾ・＆縺帙※縺・◆縺縺阪∪縺呻ｼ亥盾蜉縺ｯ莉ｻ諢上〒縺呻ｼ峨・
+                    <br>
+                    <br>蜷郁ｨ・譎る俣
+                    <br>MUJIN蠖ｹ蜩｡繧医ｊ・育ｴ・5蛻・ｼ・
+                    <br>繝ｻMUJIN縺ｮ荳也阜荳縺ｮ謚陦薙→縺昴・蜆ｪ菴肴ｧ縺ｨ縺ｯ
+                    <br>繝ｻMUJIN縺ｮ諤･謌宣聞縺ｨ縲∬ｲ｡蜍咏噪螳牙ｮ壹↓縺､縺・※
+                    <br>
+                    <br>MUJIN縺ｮ繧ｳ繧｢繧ｨ繝ｳ繧ｸ繝九い繧医ｊ・育ｴ・5蛻・ｼ・
+                    <br>繝ｻMUJIN縺ｮ繧ｳ繧｢謚陦薙↓縺､縺・※・亥虚菴懆ｨ育判謚陦薙∽ｸ画ｬ｡蜈・判蜒剰ｪ崎ｭ俶橿陦薙∽ｸｦ蛻怜・謨｣蜃ｦ逅・橿陦薙∝・菴薙・閾ｪ蜍募ｾｩ譌ｧ繧ｷ繧ｹ繝・Β縺ｮ陞榊粋縺ｪ縺ｩ・・
+                    <br>繝ｻ縺ｪ縺懊・繝ｭ繧ｰ繝ｩ繝溘Φ繧ｰ繧ｳ繝ｳ繝・せ繝医ｒ髢句ぎ縺吶ｋ縺ｮ縺九、CM-ICPC縺ｮ繧ｹ繝昴Φ繧ｵ繝ｼ繧偵ｄ繧九・縺・
+                    <br>繝ｻQ&A
+                    <br>
+                    <br>螳滄圀縺ｫMUJIN縺ｮ陬ｽ蜩√〒蜍穂ｽ懊☆繧玖､・焚縺ｮ逕｣讌ｭ逕ｨ繝ｭ繝懊ャ繝医ｒ隕九※縺・◆縺縺冗､ｾ蜀・ヤ繧｢繝ｼ・育ｴ・5蛻・ｼ・/span>
+                    <span class="lang-en"></span>
+            <p>
+                <h1 class="lang">
+                    <span class="lang-ja">繝ｫ繝ｼ繝ｫ</span>
+                    <span class="lang-en">Rules</span>
+                </h1>
+            <p class="lang">
+                <span class="lang-ja">
+                    隗｣遲斐・隧ｳ邏ｰ縺ｯAtCoder縺ｫ貅悶§縺ｾ縺吶ょ撫鬘梧焚縺ｯ・泌撫縺ｧ縺吶・br>繧ｳ繝ｳ繝・せ繝医・繝ｫ繝ｼ繝ｫ縺ｯ<a href="http://mujin-pc-2017.contest.atcoder.jp/rules">縺薙■繧・/a>繧貞盾辣ｧ縺励※縺上□縺輔＞縲・
+                </span>
+                <span class="lang-en">
+                    <a href="http://mujin-pc-2017.contest.atcoder.jp/rules">AtCoder's Rules</a> apply. There will be 4 problems.
+                </span>
+            <p>
+                <br>
+                <h1 class="lang">
+                    <span class="lang-ja">MUJIN縺ｫ縺､縺・※</span>
+                    <span class="lang-en">About Mujin</span>
+                </h1>
+
+            <p class="lang">
+                <span class="lang-ja">
+                    MUJIN縺ｯ縲・ｫ伜ｺｦ縺ｪ繧ｽ繝輔ヨ繧ｦ繧ｧ繧｢謚陦薙ｒ豁ｦ蝎ｨ縺ｫ縲∫肇讌ｭ逕ｨ繝ｭ繝懊ャ繝医ｒ遏･閭ｽ蛹悶＠縲∫肇讌ｭ縺ｮ逕溽肇諤ｧ蜷台ｸ翫ｄ莠ｺ謇倶ｸ崎ｶｳ遲峨・遉ｾ莨夂噪隱ｲ鬘後・隗｣豎ｺ縺ｫ雋｢迪ｮ縺励※縺・∪縺吶・
+                </span>
+
+                <span class="lang-en">
+                    We are a robotics company based in Tokyo working very hard to fundamentally change manufacturing and logistics.
+                </span>
+
+            <p class="lang">
+                <span class="lang-ja">
+                    逕｣讌ｭ逕ｨ繝ｭ繝懊ャ繝医ｒ縲瑚・蠕狗噪縺ｫ蜍輔°縺吶阪◆繧√・縲√Ο繝懊ャ繝医・縲碁ｭ閼ｳ縲阪→縲檎岼縲阪↓縺ゅ◆繧区ｬ｡荳紋ｻ｣縺ｮ繝ｭ繝懊ャ繝医さ繝ｳ繝医Ο繝ｼ繝ｩ・医た繝輔ヨ繧ｦ繧ｧ繧｢縺ｧ縺呻ｼ峨・髢狗匱縺ｫ迚ｹ蛹悶＠縺ｦ縺・ｋ莨夂､ｾ縺ｧ縺吶ゅ∪縺溘％縺ｮ繧ｳ繝ｳ繝医Ο繝ｼ繝ｩ繧呈ｴｻ逕ｨ縺励◆逕溽肇蟾･遞九・閾ｪ蜍募喧繧定｡後▲縺ｦ縺・∪縺吶ゅ％縺ｮ閾ｪ蠕狗噪縺ｫ繝ｭ繝懊ャ繝医ｒ蜍穂ｽ懊☆繧区橿陦薙↓繧医ｊ縲∝ｾ捺擂縺ｮ繝ｭ繝懊ャ繝医・蜍穂ｽ懈婿豕包ｼ井ｺｺ縺後Ο繝懊ャ繝医↓蜍輔″譁ｹ繧呈蕗遉ｺ縺吶ｋ譁ｹ豕包ｼ峨〒縺ｯ髮｣縺励°縺｣縺溯・蜍募喧繧呈ｬ｡縲・↓螳溽樟縺励※縺翫ｊ縲√％縺ｮ螳溽ｸｾ縺瑚ｩ穂ｾ｡縺輔ｌ縲・016蟷ｴ縺ｫ縲∝､ｧ莨∵･ｭ莉･螟悶〒/繧ｽ繝輔ヨ繧ｦ繧ｧ繧｢陬ｽ蜩√→縺励※蜿ｲ荳雁・繧√※縲√Ο繝懊ャ繝亥､ｧ雉槭・譛鬮倅ｽ阪・雉槭〒縺ゅｋ縲檎ｵ梧ｸ育肇讌ｭ螟ｧ閾｣雉槭阪ｒ蜿苓ｳ槭＠縺ｾ縺励◆縲・
+                    <br><br>
+                    笳・･謌宣聞縺吶ｋMUJIN縺ｮ螢ｲ荳翫→荳也阜縺ｮ逕｣讌ｭ逕ｨ繝ｭ繝懊ャ繝亥ｸょｴ笳・
+                    <br>逕｣讌ｭ逕ｨ繝ｭ繝懊ャ繝医す繧ｹ繝・Β縺ｮ蟶ょｴ縺ｯ縲・020蟷ｴ縺ｫ2014蟷ｴ豈斐〒邏・.5蛟阪↓諡｡螟ｧ縺吶ｋ縺薙→縺御ｺ域ｸｬ縺輔ｌ縺ｦ縺・∪縺吶・br>2014蟷ｴ縺ｮ蟶ょｴ隕乗ｨ｡・夂ｴ・.9蜈・・縲竊偵2020蟷ｴ・夂ｴ・0蜈・・蟶ょｴ縺ｸ縲・
+                    <br>MUJIN縺ｮ螢ｲ荳翫ｂ豈主ｹｴ蛟堺ｻ･荳贋ｼｸ縺ｳ邯壹￠縺ｦ縺・∪縺吶ゆｼ夂､ｾ繧ょｸょｴ繧よ･謌宣聞荳ｭ縺吶ｋ縺ｪ縺九〒縲｀UJIN縺ｫ縺ｯ雋ｴ譁ｹ縺梧ｴｻ霄阪〒縺阪ｋ蝣ｴ謇縺後◆縺上＆繧薙≠繧翫∪縺吶・
+                    <br><br>
+                    笳・推鬆伜沺縺ｮ荳也阜繝ｬ繝吶Ν縺ｮ繧ｨ繝ｳ繧ｸ繝九い縺碁寔縺ｾ繧九メ繝ｼ繝笳・
+                    <br>MUJIN縺ｯ縲∝卸讌ｭ譎ゅ°繧臥音縺ｫ繧ｨ繝ｳ繧ｸ繝九い縺ｫ縺､縺・※荳也阜縺九ｉ蜴ｳ驕ｸ謗｡逕ｨ繧堤ｶ壹￠縺ｦ縺・∪縺吶ょ━遘縺ｪ繧ｨ繝ｳ繧ｸ繝九い縺ｯ縲∽ｸｦ縺ｮ繧ｨ繝ｳ繧ｸ繝九い縺ｮ謨ｰ蜊∝阪・逕溽肇諤ｧ縺後≠繧九→險繧上ｌ縺ｦ縺・∪縺吶り・逕ｱ縺ｨ陬・㍼縺後≠繧狗腸蠅・〒縲∝ｮ溷鴨縺後≠繧頑・譫懊ｒ蜃ｺ縺吶お繝ｳ繧ｸ繝九い縲√∪縺溘∝髄荳雁ｿ・′縺ゅｊ邏逶ｴ縺ｪ蠢・戟縺｡縺後≠繧九お繝ｳ繧ｸ繝九い繧剃ｸ也阜縺九ｉ謗｡逕ｨ縺励※縺・∪縺吶・
+                    <br>
+                    MUJIN縺ｯ縲√Ο繝懊ャ繝育阜髫医〒縺ｯ蝨ｧ蛟堤噪縺ｪ繧ｽ繝輔ヨ繧ｦ繧ｧ繧｢謚陦灘鴨繧偵ｂ縺､縺薙→縺ｧ遏･繧峨ｌ縺ｦ縺・ｋ縺溘ａ縲√す繝ｪ繧ｳ繝ｳ繝舌Ξ繝ｼ縺ｪ縺ｩ縺ｮ荳也阜繧堤嶌謇九↓莉穂ｺ九ｒ縺吶ｋ縺溘ａ縺ｮ繧ｹ繝・ャ繝励↓縺ｧ縺阪ｋ縺ｧ縺励ｇ縺・ゅ∪縺溘｀UJIN縺ｫ縺ｯ縲∝ｸｸ縺ｫ驕主悉縺ｫ蜑堺ｾ九′縺ｪ縺・函逕｣蟾･遞九・繝ｭ繝懊ャ繝亥喧縺ｮ譯井ｻｶ縺後≠繧翫・撼蟶ｸ縺ｫ繧ｨ繧ｭ繧ｵ繧､繝・ぅ繝ｳ繧ｰ縺ｪ迺ｰ蠅・〒縺吶よ怙譁ｰ縺ｮ繧ｽ繝輔ヨ繧ｦ繧ｧ繧｢謚陦薙→繧｢繝ｫ繧ｴ繝ｪ繧ｺ繝縺ｧ迴ｾ螳滉ｸ也阜縺ｮ蝠城｡後ｒ繝ｭ繝懊ャ繝医↓繧医▲縺ｦ隗｣豎ｺ縺励◆縺代ｌ縺ｰ縲・鬮倥＞謚陦灘鴨縺縺代〒縺ｪ縺上∫｢ｺ縺九↑繝薙ず繝阪せ繝励Λ繝ｳ縺ｨ繝薙ず繝ｧ繝ｳ繧呈戟縺｣縺ｦ縺・ｋMUJIN縺ｧ縲∝推鬆伜沺縺ｮ荳也阜繝ｬ繝吶Ν縺ｮ繧ｨ繝ｳ繧ｸ繝九い縺ｨ荳邱偵↓縲∽ｻ穂ｺ九ｒ縺励∪縺励ｇ縺・・
+                    <br><br>謗｡逕ｨ縺ｫ蟄ｦ豁ｴ繧・・豁ｴ縺ｯ髢｢菫ゅ≠繧翫∪縺帙ｓ縺後∝盾閠・∪縺ｧ縺ｫMUJIN縺ｮ遉ｾ蜩｡縺ｮ邨梧ｭｴ縺ｯ莉･荳九・縺ｨ縺翫ｊ縺ｧ縺吶・
+                    <br>遉ｾ蜩｡蜃ｺ霄ｫ譬｡ 繝ｻ繝ｻ繝ｻ CMU, MIT, 繧ｹ繧ｿ繝ｳ繝輔か繝ｼ繝・ 繝舌・繧ｯ繝ｬ繝ｼ, Ecole Normale Superieure, 譚ｱ莠ｬ螟ｧ蟄ｦ, 莠ｬ驛ｽ螟ｧ蟄ｦ, 蛹嶺ｺｬ螟ｧ蟄ｦ, 蜊玲ｴ狗炊蟾･螟ｧ蟄ｦ, RISD, 貂・庄螟ｧ蟄ｦ莉・
+                    <br>遉ｾ蜩｡縺ｮ蜑崎・ 繝ｻ繝ｻ繝ｻ Microsoft, Qualcomm, Oracle, Iscar, Canon, Honda, Samsung, WillowGarage, AIST莉悶竊呈律譛ｬ莠ｺ莉･螟悶・縺ｻ縺ｨ繧薙←縺ｮ遉ｾ蜩｡縺ｯ縲｀UJIN縺ｫ霆｢閨ｷ縺吶ｋ縺溘ａ縺ｫ縺薙ｌ繧峨・莨夂､ｾ繧定ｾ槭ａ譌･譛ｬ縺ｫ遘ｻ菴上＠縺ｾ縺励◆縲・
+                    <br>縺昴・莉悶・邨梧ｭｴ・哂CM-ICPC蜊玲擲谺ｧ蟾槫慍蛹ｺ驫繝｡繝繝ｫ縲｀icrosoftImaginCup蜿苓ｳ櫁・ｻ・
+                    <br>
+                    <br>MUJIN縺ｧ縺ｯ縲・壼ｹｴ縺ｧ繧､繝ｳ繧ｿ繝ｼ繝ｳ繧ｷ繝・・繧・､ｾ蜩｡謗｡逕ｨ繧定｡後▲縺ｦ縺・∪縺吶ゅう繝ｳ繧ｿ繝ｼ繝ｳ繧ｷ繝・・繝ｻ遉ｾ蜩｡縺ｨ繧ゅ↓蜍滄寔隕・・・<a href="http://mujin.co.jp/jobs/jp">
+                        縺薙■繧・/a>繧堤｢ｺ隱阪￥縺縺輔＞縲・
+                        <br>雉ｪ蝠上↑縺ｩ縺後≠繧翫∪縺励◆繧峨・a href="mailto:job@mujin.co.jp?subject=Job Inquary from Programming Contest">job@mujin.co.jp
+                    </a>縺ｾ縺ｧ豌苓ｻｽ縺ｫ縺秘｣邨｡縺上□縺輔＞縲・/span>
+
+                    <span class="lang-en">
+                        Right now industrial robots have very advanced hardware that is often not used to full potential. What we currently call "automation" is really robots playing back motions that take a group of engineers months to design. Our team knows how to apply the state-of-the-art in robotics to make manufacturing and logistics truly autonomous.
+                        <br><br>
+                        Our team consists of world-class experts in robotics, software engineering, and manufacturing. We have alumni from top academic institutes such as CMU, MIT, Stanford, Berkeley, Ecole Normale Superieure, HKUST, the University of Tokyo, Peking University, and Tsinghua University, as well as global enterprises such as Microsoft, Qualcomm, Iscar, Honda, Samsung, and Canon. Since day one we have been iterating our products with real customers: we have revenue coming from most of the top ten Japanese manufacturers such as Canon, Honda, Nissan and Toyota, and we are partner with most of the Japanese robot makers such as Denso, Mitsubishi, Nachi, Yaskawa and Kawasaki.
+                        <br><br>
+                        With an elite team and a clear focus, Mujin is proud to be one of the first companies to deploy advanced real-time automation technologies in production. Our work is highly regarded in Japan and our autonomous real-time 3D picking system product PickWorker has won the 7th biennial <a href="http://www.meti.go.jp/english/press/2016/1012_03.html">Robot Award</a> given by the Ministry of Economy, Trade and Industry. It is the most prestigious award in robotics and the first time such award is given to a start-up company.
+            </p>
+            <h3 class="lang">
+                <span class="lang-ja"><a href="http://mujin.co.jp/files/mujinIntroJa.pdf" target="_blank">謗｡逕ｨ繧ｫ繧ｿ繝ｭ繧ｰ繧・b>繝繧ｦ繝ｳ繝ｭ繝ｼ繝・/b>・・/a></span>
+                <span class="lang-en"><a href="http://mujin.co.jp/files/mujinIntroEn.pdf" target="_blank"><b>Download</b> 2017 Mujin Recruiting Brochure to learn more about working at Mujin!</a></span>
+            </h3>
+            <br>
+            <br>
+            <br>
+            <h2 class="lang">
+                <span class="lang-ja">MUJIN縺ｫ繧医ｋAskul迚ｩ豬√そ繝ｳ繧ｿ繝ｼ・域ｨｪ豬懶ｼ峨〒縺ｮ荳也阜縺ｧ蛻昴ａ縺ｦ縺ｮ繝斐ャ繧ｭ繝ｳ繧ｰ蟾･遞九・閾ｪ蜍募喧</span>
+                <span class="lang-en">Below is one of the PickWorkers we deployed at one of the biggest Japanese e-commerce companies' warehouse:</span>
+            </h2>
+            <div class="video-container">
+                <iframe width="1280" height="720" src="https://www.youtube.com/embed/GT3Jt1G9CYU?rel=0&loop=1&playlist=GT3Jt1G9CYU" frameborder="1" allowfullscreen></iframe>
+            </div>
+
+            <br><br>
+
+            <h2 class="lang">
+                <span class="lang-ja">MUJIN繧ｳ繝ｳ繝医Ο繝ｼ繝ｩ縺ｫ繧医ｋ閾ｪ蜍戊ｻ企惚騾驛ｨ蜩√・縺ｰ繧臥ｩ阪∩繝斐ャ繧ｭ繝ｳ繧ｰ</span>
+                <span class="lang-en">Here's a another video demonstrating our PickWorker handling materials in manufacturing setting:</span>
+            </h2>
+            <div class="video-container">
+                <iframe width="1280" height="720" src="https://www.youtube.com/embed/4QVv7L9yKRQ?rel=0&loop=1&playlist=4QVv7L9yKRQ" frameborder="1" allowfullscreen></iframe>
+            </div>
+
+            <br><br>
+            <p class="lang">
+                <span class="lang-ja"> </span>
+
+                <span class="lang-en">
+                    Want to join us on this exciting journey to revolutionize automation? Please contact us to learn more about career opportunities at Mujin! Email us anytime at <a href="mailto:job@mujin.co.jp?subject=Job Inquary from Programming Contest">job@mujin.co.jp</a>  or fill out the form at the end of <a href="http://mujin.co.jp/jobs/en">Mujin's jobs page</a>.
+                </span><br>
+            </p>
+
+            <img src="http://mujin.co.jp/files/teamDms2016.jpg" />
+
+            <p>
+
+
+                <script>  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');  ga('create', 'UA-73979466-1', 'auto');  ga('send', 'pageview');</script>
+
+
+                <script type="text/javascript">
+
+
+
+function getTimeRemaining(endtime) {
+  var t = Date.parse(endtime) - Date.parse(new Date());
+  var seconds = Math.floor((t / 1000) % 60);
+  var minutes = Math.floor((t / 1000 / 60) % 60);
+  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+  var days = Math.floor(t / (1000 * 60 * 60 * 24));
+  return {
+    'total': t,
+    'days': days,
+    'hours': hours,
+    'minutes': minutes,
+    'seconds': seconds
+  };
+}
+
+function initializeClock(id, endtime) {
+  var clock = document.getElementById(id);
+  var daysSpan = clock.querySelector('.days');
+  var hoursSpan = clock.querySelector('.hours');
+  var minutesSpan = clock.querySelector('.minutes');
+  var secondsSpan = clock.querySelector('.seconds');
+
+  function updateClock() {
+    var t = getTimeRemaining(endtime);
+
+    daysSpan.innerHTML = t.days;
+    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+    if (t.total <= 0) {
+      clearInterval(timeinterval);
+    }
+  }
+
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
+}
+
+var deadline = 'February 25 2017 21:00:00 GMT+0900';
+initializeClock('clockdiv', deadline);
+                </script>
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+    <footer>
+        <ul>
+            <li><a href="/personal"><span class="lang"><span class="lang-en">Personal Information</span><span class="lang-ja">蛟倶ｺｺ諠・ｱ菫晁ｭｷ譁ｹ驥・/span></span></a></li>
+            <li><a href="/tutorial"><span class="lang"><span class="lang-en">Tutorial</span><span class="lang-ja">繝√Η繝ｼ繝医Μ繧｢繝ｫ</span></span></a></li>
+            <li><a href="/rules"><span class="lang"><span class="lang-en">Rules</span><span class="lang-ja">繝ｫ繝ｼ繝ｫ</span></span></a></li>
+            <li><a href="/glossary"><span class="lang"><span class="lang-en">Glossary</span><span class="lang-ja">逕ｨ隱樣寔</span></span></a></li>
+            <li><a href="/faq"><span class="lang"><span class="lang-en">FAQ</span><span class="lang-ja">繧医￥縺ゅｋ雉ｪ蝠・/span></span></a></li>
+        </ul>
+        <p id="copyright">Powered by <a href="http://atcoder.jp">AtCoder.</a></p>
+    </footer>
+
+    <p id="fixed-server-timer" style="display: none;"></p>
+
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/prettify.js"></script>
+    <script src="/js/lang-vb.js"></script>
+    <script src="/js/lang-hs.js"></script>
+    <script src="/js/varmath.js"></script>
+    <script src="/js/script.js?v=2"></script>
+</body>
+</html>
