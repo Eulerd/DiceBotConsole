@@ -24,68 +24,73 @@ namespace DiceBotConsole
             HomePage = Scraping("https://atcoder.jp/?lang=ja", "utf-8");
 
             //予定されたコンテスト部分の情報を取得
-            var nodes = HomePage.DocumentNode.SelectNodes("//div[2]/table[@class='table table-default table-striped table-hover table-condensed']/tbody/tr/td[2]/small/a")
+            if (HomePage != null)
+            {
+                var nodes = HomePage.DocumentNode.SelectNodes("//div[2]/table[@class='table table-default table-striped table-hover table-condensed']/tbody/tr/td[2]/small/a")
                                     .Select(a => new
                                     {
                                         Link = a.Attributes["href"].Value.Trim(),
                                         Name = a.InnerText.Trim(),
                                     });
 
-            //予定されたコンテスト部が存在するか確認
-            string title = HomePage.DocumentNode.SelectSingleNode("//h4[2]").InnerText;
-            if(!title.Contains("終了"))
-            {
-                Contest con = new Contest();
-                foreach(var node in nodes.Take(nodes.Count()))
+                //予定されたコンテスト部が存在するか確認
+                string title = HomePage.DocumentNode.SelectSingleNode("//h4[2]").InnerText;
+                if (!title.Contains("終了"))
                 {
-                    con = new Contest();
-
-                    // リンクと名前を追加
-                    con.Link = node.Link;
-                    con.Name = node.Name;
-
-
-                    // 開始時間と終了時間を取得
-                    ContestPage = new HtmlDocument();
-
-                    string html = "";
-                    try
+                    Contest con = new Contest();
+                    foreach (var node in nodes.Take(nodes.Count()))
                     {
-                        WebClient wc = new WebClient();
-                        html = wc.DownloadString(con.Link);
-                        ContestPage.LoadHtml(html);
-                    }
-                    catch
-                    {
-                        Console.WriteLine("--- URLが正しく読み取ることが出来ませんでした\a");
-                    }
+                        con = new Contest();
 
-                    try
-                    {
-                        var StartTime = ContestPage.DocumentNode.SelectSingleNode(@"//*[@id='contest-start-time']");
-                        var EndTime = ContestPage.DocumentNode.SelectSingleNode(@"//*[@id='contest-end-time']");
-                        
-                        // 開始時間と終了時間を追加
-                        con.StartTime = DateTime.Parse(StartTime.InnerText);
-                        con.EndTime = DateTime.Parse(EndTime.InnerText);
-                        
-                        // 新しいコンテストを追加
-                        contests.Add(con);
+                        // リンクと名前を追加
+                        con.Link = node.Link;
+                        con.Name = node.Name;
 
-                        Console.WriteLine(con.Name);
-                        Console.WriteLine(con.StartToEnd);
-                        Console.WriteLine(con.Link);
-                        Console.WriteLine("-----");
-                    }
-                    catch(NullReferenceException)
-                    {
-                        Console.WriteLine("コンテストを追加できませんでした。");
-                        Console.WriteLine(" ------- " + con.Name);
-                        Console.WriteLine(" ------- " + con.Link);
-                        Console.WriteLine(" ------- " + con.StartToEnd);
+
+                        // 開始時間と終了時間を取得
+                        ContestPage = new HtmlDocument();
+
+                        string html = "";
+                        try
+                        {
+                            WebClient wc = new WebClient();
+                            html = wc.DownloadString(con.Link);
+                            ContestPage.LoadHtml(html);
+                        }
+                        catch
+                        {
+                            Console.WriteLine("--- URLが正しく読み取ることが出来ませんでした\a");
+                        }
+
+                        try
+                        {
+                            var StartTime = ContestPage.DocumentNode.SelectSingleNode(@"//*[@id='contest-start-time']");
+                            var EndTime = ContestPage.DocumentNode.SelectSingleNode(@"//*[@id='contest-end-time']");
+
+                            // 開始時間と終了時間を追加
+                            con.StartTime = DateTime.Parse(StartTime.InnerText);
+                            con.EndTime = DateTime.Parse(EndTime.InnerText);
+
+                            // 新しいコンテストを追加
+                            contests.Add(con);
+
+                            Console.WriteLine(con.Name);
+                            Console.WriteLine(con.StartToEnd);
+                            Console.WriteLine(con.Link);
+                            Console.WriteLine("-----");
+                        }
+                        catch (NullReferenceException)
+                        {
+                            Console.WriteLine("コンテストを追加できませんでした。");
+                            Console.WriteLine(" ------- " + con.Name);
+                            Console.WriteLine(" ------- " + con.Link);
+                            Console.WriteLine(" ------- " + con.StartToEnd);
+                        }
                     }
                 }
             }
+            else
+                Console.WriteLine(" ---- コンテストを取得できませんでした。");
             
             // コンテスト名をABC,ARC,AGCに短縮
             for(int i = 0;i < contests.Count();i++)
@@ -138,7 +143,7 @@ namespace DiceBotConsole
             {
                 html = wc.DownloadString(url);
             }
-            catch(WebException)
+            catch
             {
                 Console.WriteLine("--- 無効なURLです\a");
             }

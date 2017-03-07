@@ -23,13 +23,6 @@ namespace DiceBotConsole
 
         static void Main(string[] args)
         {
-
-            // コンテストを取得して表示
-            Contests.AddRange(GetCon.GetAtcoderContests(Contests));
-
-            Console.WriteLine("GetAtcoderContest");
-            
-
             // TwitterBotを開始
 
             bot.SessionStart();
@@ -83,10 +76,10 @@ namespace DiceBotConsole
             //リプを送るTextBoxに名前がある　かつ　フォロワーにいる
             //ときにツイート
             Cursored<User> users = bot.token.Friends.List();
-            foreach (var user in users)
-            {
-                List<string> usernames = GetReplyUserName();
+            List<string> usernames = GetReplyUserName();
 
+            foreach (var user in users)
+            { 
                 for (int j = 0; j < usernames.Count; j++)
                 {
                     if (user.ScreenName == usernames[j])
@@ -98,9 +91,9 @@ namespace DiceBotConsole
 
                             Console.WriteLine("@" + usernames[j] + "へ通知します" + "\r\n");
                         }
-                        catch (CoreTweet.TwitterException exc)
+                        catch
                         {
-                            Console.WriteLine("---:投稿できませんでした。" + exc + "\r\n");
+                            Console.WriteLine("---:投稿できませんでした。");
                         }
                     }
                 }
@@ -200,7 +193,7 @@ namespace DiceBotConsole
                 else
                     Console.WriteLine("--- API切れにより取得に失敗しました。");
             }
-            catch (TwitterException)
+            catch
             {
                 Console.WriteLine("--- タイムアウトしました.");
             }
@@ -255,7 +248,9 @@ namespace DiceBotConsole
 
                             Response(Message);
 
+                            Console.WriteLine(" ++++++++++ ");
                             Console.WriteLine(Message);
+                            Console.WriteLine(" ++++++++++ ");
                         }
 
                     }
