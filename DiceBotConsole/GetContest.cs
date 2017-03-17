@@ -74,10 +74,8 @@ namespace DiceBotConsole
                             // 新しいコンテストを追加
                             contests.Add(con);
 
-                            Console.WriteLine(con.Name);
-                            Console.WriteLine(con.StartToEnd);
-                            Console.WriteLine(con.Link);
-                            Console.WriteLine("-----");
+                            // それっぽく
+                            Console.Write(".");
                         }
                         catch (NullReferenceException)
                         {
@@ -91,6 +89,8 @@ namespace DiceBotConsole
             }
             else
                 Console.WriteLine(" ---- コンテストを取得できませんでした。");
+
+            Console.WriteLine();
             
             // コンテスト名をABC,ARC,AGCに短縮
             for(int i = 0;i < contests.Count();i++)
@@ -101,14 +101,9 @@ namespace DiceBotConsole
                 Names.Add("AtCoder Beginner Contest", "ABC");
                 Names.Add("AtCoder Regular Contest", "ARC");
                 Names.Add("AtCoder Grand Contest","AGC");
-
-                for(int j = 0;j < Names.Count();j++)
-                {
-                    if (name.Contains(Names.ElementAt(j).Key))
-                    {
-                        name = Names.ElementAt(j).Value;
-                    }
-                }
+                
+                foreach(var ShortName in Names)
+                    name = name.Replace(ShortName.Key, ShortName.Value);
 
                 contests[i].Name = name;
             }
@@ -121,6 +116,15 @@ namespace DiceBotConsole
 
             // コンテストをまとめる
             contests = SumContest(contests);
+
+            // 新しいコンテストをコンソールに表示
+            foreach(Contest contest in contests)
+            {
+                Console.WriteLine(contest.Name);
+                Console.WriteLine(contest.StartToEnd);
+                Console.WriteLine(contest.Link);
+                Console.WriteLine("-----");
+            }
 
             return contests;
         }

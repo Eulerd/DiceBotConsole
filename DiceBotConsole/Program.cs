@@ -1,11 +1,8 @@
 ﻿using CoreTweet;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text;
 using System.Threading;
 using System.Xml;
 using System.Xml.Linq;
@@ -252,7 +249,6 @@ namespace DiceBotConsole
                             Console.WriteLine(Message);
                             Console.WriteLine(" ++++++++++ ");
                         }
-
                     }
                 }
             }
