@@ -12,6 +12,8 @@ namespace DiceBotConsole
     class Program
     {
         static List<Contest> Contests = new List<Contest>();
+        static Dictionary<DateTime, List<string>> ContestNotifyList = new Dictionary<DateTime, List<string>>();
+
 
         static GetContest GetCon = new GetContest();
         static TwitterBot bot = new TwitterBot();
@@ -76,7 +78,7 @@ namespace DiceBotConsole
             List<string> usernames = GetReplyUserName();
 
             foreach (var user in users)
-            { 
+            {
                 for (int j = 0; j < usernames.Count; j++)
                 {
                     if (user.ScreenName == usernames[j])
@@ -201,55 +203,27 @@ namespace DiceBotConsole
         {
             AutoResetEvent AutoEve = (AutoResetEvent)info;
 
-            if (Contests.Any())
+            for (int i = 0; i < Contests.Count; i++)
             {
-                for (int i = 0; i < Contests.Count; i++)
+                if (Contests[i].RemitTime.TotalSeconds < 0)
+                    Contests.RemoveAt(i);
+            }
+
+            foreach (var ConNotify in ContestNotifyList)
+            {
+                if (DateTime.Now.AddSeconds(-0.5) < ConNotify.Key && ConNotify.Key < DateTime.Now.AddSeconds(0.5))
                 {
-                    if (Contests[i].RemitTime.TotalSeconds < 0)
+                    foreach (string Message in ConNotify.Value)
                     {
-                        Contests.RemoveAt(i);
+                        Response(Message);
+
+                        Console.WriteLine(" ++++++++++ ");
+                        Console.WriteLine(Message);
+                        Console.WriteLine(" ++++++++++ ");
                     }
-                    else
-                    {
-                        bool IsNotify = false;
-                        string Message = "";
-                        double time = Contests[i].RemitTime.TotalSeconds;
 
-                        //コンテストまでの時間ごとにコメントを設定
-                        if (3600 * 24 * 7 - 1 < time && time < 3600 * 24 * 7)
-                        {
-                            Message = "一週間後、コンテストがあります。\n";
-                            IsNotify = true;
-                        }
-                        if (3600 * 24 - 1 < time && time < 3600 * 24)
-                        {
-                            IsNotify = true;
-                            Message = "明日、コンテストがあります。\n";
-                        }
-                        if (3600 - 1 < time && time < 3600)
-                        {
-                            IsNotify = true;
-                            Message = "コンテスト開始まであと60分です\n";
-                        }
-                        if (600 - 1 < time && time < 600)
-                        {
-                            IsNotify = true;
-                            Message = "コンテスト開始まであと10分です\n";
-                        }
-
-
-                        //コンテスト内容を追加
-                        if(IsNotify)
-                        {
-                            Message += Contests[i].Message;
-
-                            Response(Message);
-
-                            Console.WriteLine(" ++++++++++ ");
-                            Console.WriteLine(Message);
-                            Console.WriteLine(" ++++++++++ ");
-                        }
-                    }
+                    ContestNotifyList.Remove(ConNotify.Key);
+                    break;
                 }
             }
         }
@@ -259,6 +233,32 @@ namespace DiceBotConsole
             AutoResetEvent AutoEve = (AutoResetEvent)Info;
 
             Contests.AddRange(GetCon.GetAtcoderContests(Contests));
+
+
+            foreach (Contest con in Contests)
+            {
+                string[] Messages =
+                    {
+                        "コンテスト開始まであと10分です\n" + con.Message, "コンテスト開始まであと60分です\n" + con.Message,
+                        "明日、コンテストがあります。\n" + con.Message, "一週間後、コンテストがあります。\n" + con.Message
+                    };
+
+                DateTime[] Times = 
+                    {
+                        con.StartTime.AddMinutes(10), con.StartTime.AddHours(1),
+                        con.StartTime.AddDays(1), con.StartTime.AddDays(7)
+                    };
+
+                for(int i = 0;i < Times.Count();i ++)
+                {
+                    // 時間が追加されていなかったらメッセージリストを初期化
+                    if (!ContestNotifyList.ContainsKey(Times[i]))
+                        ContestNotifyList.Add(Times[i], new List<string>());
+
+                    // 時間に対応付けてメッセージを追加
+                    ContestNotifyList[Times[i]].Add(Messages[i]);
+                }
+            }
         }
     }
 }
