@@ -251,12 +251,15 @@ namespace DiceBotConsole
 
                 DateTime[] Times = 
                     {
-                        con.StartTime.AddMinutes(10), con.StartTime.AddHours(1),
-                        con.StartTime.AddDays(1), con.StartTime.AddDays(7)
+                        con.StartTime.AddMinutes(-10), con.StartTime.AddHours(-1),
+                        con.StartTime.AddDays(-1), con.StartTime.AddDays(-7)
                     };
 
                 for(int i = 0;i < Times.Count();i ++)
                 {
+                    if (Times[i] < DateTime.Now)
+                        continue;
+
                     // 時間が追加されていなかったらメッセージリストを初期化
                     if (!ContestNotifyList.ContainsKey(Times[i]))
                         ContestNotifyList.Add(Times[i], new List<string>());
@@ -266,6 +269,19 @@ namespace DiceBotConsole
                         ContestNotifyList[Times[i]].Add(Messages[i]);
                 }
             }
+
+            // 通知リストの中身を表示
+            /*
+            foreach(var Notify in ContestNotifyList)
+            {
+                Console.WriteLine("{0} : ", Notify.Key);
+                foreach(string Message in Notify.Value)
+                {
+                    Console.WriteLine(Message);
+                }
+                Console.WriteLine("__________");
+            }
+            */
         }
     }
 }
