@@ -12,7 +12,7 @@ namespace DiceBotConsole
     class Program
     {
         static List<Contest> Contests = new List<Contest>();
-        static Dictionary<DateTime, List<string>> ContestNotifyList = new Dictionary<DateTime, List<string>>();
+        static SortedDictionary<DateTime, List<string>> ContestNotifyList = new SortedDictionary<DateTime, List<string>>();
 
 
         static GetContest GetCon = new GetContest();
@@ -209,9 +209,15 @@ namespace DiceBotConsole
                     Contests.RemoveAt(i);
             }
 
+            DateTime now = DateTime.Now;
             foreach (var ConNotify in ContestNotifyList)
             {
-                if (DateTime.Now.AddSeconds(-0.5) < ConNotify.Key && ConNotify.Key < DateTime.Now.AddSeconds(0.5))
+                if (now.AddSeconds(-0.5) > ConNotify.Key)
+                {
+                    ContestNotifyList.Remove(ConNotify.Key);
+                    continue;
+                }
+                else if(ConNotify.Key <= now.AddSeconds(0.5))
                 {
                     foreach (string Message in ConNotify.Value)
                     {
@@ -234,7 +240,7 @@ namespace DiceBotConsole
 
             Contests.AddRange(GetCon.GetAtcoderContests(Contests));
 
-
+            Console.WriteLine(" +++++ Update : {0} +++++", DateTime.Now.ToString());
             foreach (Contest con in Contests)
             {
                 string[] Messages =
@@ -256,7 +262,8 @@ namespace DiceBotConsole
                         ContestNotifyList.Add(Times[i], new List<string>());
 
                     // 時間に対応付けてメッセージを追加
-                    ContestNotifyList[Times[i]].Add(Messages[i]);
+                    if (!ContestNotifyList[Times[i]].Contains(Messages[i]))
+                        ContestNotifyList[Times[i]].Add(Messages[i]);
                 }
             }
         }
