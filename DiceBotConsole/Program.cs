@@ -210,16 +210,18 @@ namespace DiceBotConsole
             }
 
             DateTime now = DateTime.Now;
-            foreach (var ConNotify in ContestNotifyList)
+            List<DateTime> KeyTimes = new List<DateTime>(ContestNotifyList.Keys);
+
+            foreach (DateTime time in KeyTimes)
             {
-                if (now.AddSeconds(-0.5) > ConNotify.Key)
+                if (now.AddSeconds(-0.5) > time)
                 {
-                    ContestNotifyList.Remove(ConNotify.Key);
+                    ContestNotifyList.Remove(time);
                     continue;
                 }
-                else if(ConNotify.Key <= now.AddSeconds(0.5))
+                else if(time <= now.AddSeconds(0.5))
                 {
-                    foreach (string Message in ConNotify.Value)
+                    foreach (string Message in ContestNotifyList[time])
                     {
                         Response(Message);
 
@@ -228,7 +230,7 @@ namespace DiceBotConsole
                         Console.WriteLine(" ++++++++++ ");
                     }
 
-                    ContestNotifyList.Remove(ConNotify.Key);
+                    ContestNotifyList.Remove(time);
                     break;
                 }
             }
