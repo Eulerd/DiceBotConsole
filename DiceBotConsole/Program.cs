@@ -14,7 +14,6 @@ namespace DiceBotConsole
         static List<Contest> Contests = new List<Contest>();
         static SortedDictionary<DateTime, List<string>> ContestNotifyList = new SortedDictionary<DateTime, List<string>>();
 
-
         static GetContest GetCon = new GetContest();
         static TwitterBot bot = new TwitterBot();
         static SlackWebHook WebHook = new SlackWebHook();
@@ -203,34 +202,33 @@ namespace DiceBotConsole
         {
             AutoResetEvent AutoEve = (AutoResetEvent)info;
 
-            for (int i = 0; i < Contests.Count; i++)
-            {
-                if (Contests[i].RemitTime.TotalSeconds < 0)
-                    Contests.RemoveAt(i);
-            }
-
             DateTime now = DateTime.Now;
             List<DateTime> KeyTimes = new List<DateTime>(ContestNotifyList.Keys);
 
             foreach (DateTime time in KeyTimes)
             {
-                if (now.AddSeconds(-0.5) > time)
+                if (time <= now)
                 {
-                    ContestNotifyList.Remove(time);
-                    continue;
-                }
-                else if(time <= now.AddSeconds(0.5))
-                {
+                    string OldMsg = "";
                     foreach (string Message in ContestNotifyList[time])
                     {
-                        Response(Message);
+                        if(Message != OldMsg)
+                        {
+                            Response(Message);
 
-                        Console.WriteLine(" ++++++++++ ");
-                        Console.WriteLine(Message);
-                        Console.WriteLine(" ++++++++++ ");
+                            Console.WriteLine(" ++++++++++ ");
+                            Console.WriteLine(Message);
+                            Console.WriteLine(" ++++++++++ ");
+
+                            Thread.Sleep(3000);
+                            OldMsg = Message;
+                        }
                     }
 
                     ContestNotifyList.Remove(time);
+
+                    PrintLimitTime();
+
                     break;
                 }
             }
@@ -272,18 +270,37 @@ namespace DiceBotConsole
                 }
             }
 
-            // 通知リストの中身を表示
-            /*
-            foreach(var Notify in ContestNotifyList)
+            PrintLimitTime();
+            PrintContests();
+
+        }
+
+        /// <summary>
+        /// 通知リストの中身を表示
+        /// </summary>
+        static void PrintContests()
+        {
+            foreach (var Notify in ContestNotifyList)
             {
-                Console.WriteLine("{0} : ", Notify.Key);
-                foreach(string Message in Notify.Value)
+                Console.WriteLine("Notify time : " + Notify.Key);
+                foreach (string Message in Notify.Value)
                 {
                     Console.WriteLine(Message);
                 }
                 Console.WriteLine("__________");
             }
-            */
+        }
+
+        static void PrintLimitTime()
+        {
+            // 次のコンテスト通知時間を表示
+            Console.WriteLine("====================");
+            Console.WriteLine(DateTime.Now);
+            if (ContestNotifyList.Any())
+                Console.WriteLine("次のコンテスト通知まで後 : " + (ContestNotifyList.First().Key - DateTime.Now));
+            else
+                Console.WriteLine("コンテストがありません。");
+            Console.WriteLine("====================");
         }
     }
 }

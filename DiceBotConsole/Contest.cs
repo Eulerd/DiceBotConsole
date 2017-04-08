@@ -46,7 +46,7 @@ namespace DiceBotConsole
         {
             get
             {
-                return StartTime.ToString() + " - " + EndTime.ToString("HH:mm:ss");
+                return StartTime.ToString("yyyy/MM/dd HH:mm:ss") + " - " + EndTime.ToString("HH:mm:ss (dddd)");
             }
         }
 

@@ -23,7 +23,7 @@ namespace DiceBotConsole
         /// SlackBot用
         /// </summary>
         [JsonObject("user")]
-        public class UserModel
+        public class SlackUserModel
         {
             [JsonProperty("text")]
             public string Text { get; set; }
@@ -45,7 +45,7 @@ namespace DiceBotConsole
 
             var wc = new WebClient();
 
-            var data = new UserModel();
+            var data = new SlackUserModel();
             data.Text = message;
             data.Icon = ":dicek:";
             data.UserName = "EulerdBotTest";

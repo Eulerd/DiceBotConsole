@@ -118,6 +118,7 @@ namespace DiceBotConsole
             contests = SumContest(contests);
 
             // 新しいコンテストをコンソールに表示
+            /*
             foreach(Contest contest in contests)
             {
                 Console.WriteLine(contest.Name);
@@ -125,6 +126,7 @@ namespace DiceBotConsole
                 Console.WriteLine(contest.Link);
                 Console.WriteLine("-----");
             }
+            */
 
             return contests;
         }
