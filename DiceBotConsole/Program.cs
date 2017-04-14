@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Xml;
 using System.Xml.Linq;
+using System.Timers;
 
 namespace DiceBotConsole
 {
@@ -19,6 +19,10 @@ namespace DiceBotConsole
         static SlackWebHook WebHook = new SlackWebHook();
         static string xmlfilename = "Reply.xml";
 
+        static Timer AddTimer = new Timer();
+        static Timer CheckTimer = new Timer();
+        static Timer ReplyTimer = new Timer();
+
         static void Main(string[] args)
         {
             // TwitterBotを開始
@@ -30,21 +34,14 @@ namespace DiceBotConsole
             bot.token.Statuses.Update("起動しました。" + DateTime.Now);
 
             // タイマー設定
-            AutoResetEvent CheckAutoEve = new AutoResetEvent(false);
-            AutoResetEvent AddAutoEve = new AutoResetEvent(false);
-            AutoResetEvent ReplyAutoEve = new AutoResetEvent(false);
+            AddTimer.Elapsed += new ElapsedEventHandler(AddContestForDays);
+            CheckTimer.Elapsed += new ElapsedEventHandler(CheckNotifyTime);
+            ReplyTimer.Elapsed += new ElapsedEventHandler(CheckReply);
 
-            TimerCallback CheckTimerDelegate = new TimerCallback(CheckNotifyTime);
-            TimerCallback AddTimerDelegate = new TimerCallback(AddContestForDays);
-            TimerCallback ReplyTimerDelegate = new TimerCallback(CheckReply);
+            AddTimer.Interval = (int)TimeSpan.FromDays(1).TotalMilliseconds;
+            CheckTimer.Interval = 1000;
+            ReplyTimer.Interval = (int)TimeSpan.FromMinutes(30).TotalMilliseconds;
 
-            Timer AddTimer = new Timer(AddTimerDelegate, AddAutoEve, 0, (int)TimeSpan.FromDays(1).TotalMilliseconds);
-            Timer CheckTimer = new Timer(CheckTimerDelegate, CheckAutoEve, 0, 1000);
-            Timer ReplyTimer = new Timer(ReplyTimerDelegate, ReplyAutoEve, 0, (int)TimeSpan.FromMinutes(30).TotalMilliseconds);
-
-            AddAutoEve.WaitOne(-1);
-            CheckAutoEve.WaitOne(-1);
-            ReplyAutoEve.WaitOne(-1);
         }
 
         /// <summary>
@@ -68,44 +65,47 @@ namespace DiceBotConsole
             return ReplyUserName;
         }
 
-
+        static string OldMessage = "";
         static void Response(string Message)
         {
             //リプを送るTextBoxに名前がある　かつ　フォロワーにいる
             //ときにツイート
-            Cursored<User> users = bot.token.Friends.List();
-            List<string> usernames = GetReplyUserName();
-
-            foreach (var user in users)
+            if(Message != OldMessage)
             {
-                for (int j = 0; j < usernames.Count; j++)
-                {
-                    if (user.ScreenName == usernames[j])
-                    {
-                        try
-                        {
-                            bot.token.Statuses.Update
-                                (new { status = "@" + usernames[j] + Environment.NewLine + Message, in_reply_to_status_id = user.Id });
+                Cursored<User> users = bot.token.Friends.List();
+                List<string> usernames = GetReplyUserName();
 
-                            Console.WriteLine("@" + usernames[j] + "へ通知します" + "\r\n");
-                        }
-                        catch
+                foreach (var user in users)
+                {
+                    for (int j = 0; j < usernames.Count; j++)
+                    {
+                        if (user.ScreenName == usernames[j])
                         {
-                            Console.WriteLine("---:投稿できませんでした。");
+                            try
+                            {
+                                bot.token.Statuses.Update
+                                    (new { status = "@" + usernames[j] + Environment.NewLine + Message, in_reply_to_status_id = user.Id });
+
+                                Console.WriteLine("@" + usernames[j] + "へ通知します" + "\r\n");
+                            }
+                            catch
+                            {
+                                Console.WriteLine("---:投稿できませんでした。");
+                            }
                         }
                     }
                 }
+
+                // Slackに通知
+                WebHook.Upload(Message);
             }
 
-            // Slackに通知
-            WebHook.Upload(Message);
+            OldMessage = Message;
         }
 
 
-        static void CheckReply(Object info)
+        static void CheckReply(object sender, ElapsedEventArgs e)
         {
-            AutoResetEvent AutoEve = (AutoResetEvent)info;
-
             string notify = "通知して";
             string notnotify = "通知しないで";
 
@@ -197,11 +197,8 @@ namespace DiceBotConsole
             }
         }
 
-
-        static void CheckNotifyTime(Object info)
+        static void CheckNotifyTime(object sender, ElapsedEventArgs e)
         {
-            AutoResetEvent AutoEve = (AutoResetEvent)info;
-
             DateTime now = DateTime.Now;
             List<DateTime> KeyTimes = new List<DateTime>(ContestNotifyList.Keys);
 
@@ -209,7 +206,10 @@ namespace DiceBotConsole
             {
                 if (time <= now)
                 {
+                    CheckTimer.Stop();
+
                     string OldMsg = "";
+                    
                     foreach (string Message in ContestNotifyList[time])
                     {
                         if(Message != OldMsg)
@@ -220,27 +220,29 @@ namespace DiceBotConsole
                             Console.WriteLine(Message);
                             Console.WriteLine(" ++++++++++ ");
 
-                            Thread.Sleep(3000);
                             OldMsg = Message;
+                            System.Threading.Thread.Sleep(3000);
                         }
                     }
 
+                    Console.WriteLine("Remove : " + ContestNotifyList[time][0]);
                     ContestNotifyList.Remove(time);
 
                     PrintLimitTime();
 
+                    CheckTimer.Start();
                     break;
                 }
             }
         }
 
-        static void AddContestForDays(Object Info)
+        static void AddContestForDays(object sneder, ElapsedEventArgs e)
         {
-            AutoResetEvent AutoEve = (AutoResetEvent)Info;
-
             Contests.AddRange(GetCon.GetAtcoderContests(Contests));
 
-            Console.WriteLine(" +++++ Update : {0} +++++", DateTime.Now.ToString());
+            Console.WriteLine(" +++++ Update : " + DateTime.Now.ToString() + "+++++");
+
+            ContestNotifyList = new SortedDictionary<DateTime, List<string>>();
             foreach (Contest con in Contests)
             {
                 string[] Messages =
