@@ -42,6 +42,13 @@ namespace DiceBotConsole
             CheckTimer.Interval = 1000;
             ReplyTimer.Interval = (int)TimeSpan.FromMinutes(30).TotalMilliseconds;
 
+            AddTimer.Start();
+            CheckTimer.Start();
+            ReplyTimer.Start();
+
+            AddContests();
+
+            while (Console.Read() != 'q') { }
         }
 
         /// <summary>
@@ -238,6 +245,11 @@ namespace DiceBotConsole
 
         static void AddContestForDays(object sneder, ElapsedEventArgs e)
         {
+            AddContests();
+        }
+
+        static void AddContests()
+        {
             Contests.AddRange(GetCon.GetAtcoderContests(Contests));
 
             Console.WriteLine(" +++++ Update : " + DateTime.Now.ToString() + "+++++");
@@ -251,13 +263,13 @@ namespace DiceBotConsole
                         "明日、コンテストがあります。\n" + con.Message, "一週間後、コンテストがあります。\n" + con.Message
                     };
 
-                DateTime[] Times = 
+                DateTime[] Times =
                     {
                         con.StartTime.AddMinutes(-10), con.StartTime.AddHours(-1),
                         con.StartTime.AddDays(-1), con.StartTime.AddDays(-7)
                     };
 
-                for(int i = 0;i < Times.Count();i ++)
+                for (int i = 0; i < Times.Count(); i++)
                 {
                     if (Times[i] < DateTime.Now)
                         continue;
@@ -274,7 +286,6 @@ namespace DiceBotConsole
 
             PrintLimitTime();
             PrintContests();
-
         }
 
         /// <summary>
