@@ -26,15 +26,16 @@ namespace DiceBotConsole
         static void Main(string[] args)
         {
             // TwitterBotを開始
-
             bot.SessionStart();
 
             Console.WriteLine("BotStart");
+            Console.WriteLine("Quit => [q]");
+            Console.WriteLine("Update => [a]");
 
             bot.token.Statuses.Update("起動しました。" + DateTime.Now);
 
             // タイマー設定
-            AddTimer.Elapsed += new ElapsedEventHandler(AddContestForDays);
+            AddTimer.Elapsed += new ElapsedEventHandler(UpdateContestForDays);
             CheckTimer.Elapsed += new ElapsedEventHandler(CheckNotifyTime);
             ReplyTimer.Elapsed += new ElapsedEventHandler(CheckReply);
 
@@ -46,9 +47,23 @@ namespace DiceBotConsole
             CheckTimer.Start();
             ReplyTimer.Start();
 
-            AddContests();
+            UpdateContests();
 
-            while (Console.Read() != 'q') { }
+            bool loop = true;
+            while (loop)
+            {
+                switch (Console.Read())
+                {
+                    case 'q':
+                    case 'Q':
+                        loop = false;
+                        break;
+                    case 'a':
+                    case 'A':
+                        UpdateContests();
+                        break;
+                }
+            }
         }
 
         /// <summary>
@@ -243,14 +258,31 @@ namespace DiceBotConsole
             }
         }
 
-        static void AddContestForDays(object sneder, ElapsedEventArgs e)
+        static void UpdateContestForDays(object sneder, ElapsedEventArgs e)
         {
-            AddContests();
+            UpdateContests();
         }
 
-        static void AddContests()
+        static void UpdateContests()
         {
-            Contests.AddRange(GetCon.GetAtcoderContests(Contests));
+            // 新しいコンテストを取得
+            var newContests = GetCon.GetAtcoderNewContests(Contests);
+
+            // 古い情報のコンテストを削除
+            foreach(Contest newContest in newContests)
+            {
+                for (int i = 0; i < Contests.Count; i++)
+                {
+                    if (newContest.ShouldUpdate(Contests[i]))
+                    {
+                        Contests.RemoveAt(i);
+                        break;
+                    }
+                }
+            }
+
+            // 新しいコンテストを追加
+            Contests.AddRange(newContests);
 
             Console.WriteLine(" +++++ Update : " + DateTime.Now.ToString() + "+++++");
 

@@ -60,6 +60,16 @@ namespace DiceBotConsole
                 return Name + "\r\n" + StartToEnd + "\r\n" + Link;
             }
         }
+
+        /// <summary>
+        /// コンテスト情報を更新するか
+        /// </summary>
+        /// <param name="old">前の情報のコンテスト</param>
+        /// <returns>更新するべきか</returns>
+        public bool ShouldUpdate(Contest old)
+        {
+            return ((Name == old.Name) && (old.StartTime != StartTime || old.EndTime != EndTime));
+        }
         
         /// <summary>
         /// すべての要素を削除

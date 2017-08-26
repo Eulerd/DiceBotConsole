@@ -16,8 +16,8 @@ namespace DiceBotConsole
         /// <summary>
         /// Atcoderのコンテスト情報を取得する
         /// </summary>
-        /// <returns>Atcoderのコンテスト</returns>
-        public List<Contest> GetAtcoderContests(List<Contest> OldContests)
+        /// <returns>新しいAtcoderのコンテスト</returns>
+        public List<Contest> GetAtcoderNewContests(List<Contest> OldContests)
         {
             List<Contest> contests = new List<Contest>();
 
@@ -91,16 +91,16 @@ namespace DiceBotConsole
                 Console.WriteLine(" ---- コンテストを取得できませんでした。");
 
             Console.WriteLine();
-            
+
+            Dictionary<string, string> Names = new Dictionary<string, string>();
+            Names.Add("AtCoder Beginner Contest", "ABC");
+            Names.Add("AtCoder Regular Contest", "ARC");
+            Names.Add("AtCoder Grand Contest", "AGC");
+
             // コンテスト名をABC,ARC,AGCに短縮
-            for(int i = 0;i < contests.Count();i++)
+            for (int i = 0;i < contests.Count();i++)
             {
                 string name = contests[i].Name;
-                Dictionary<string, string> Names = new Dictionary<string, string>();
-
-                Names.Add("AtCoder Beginner Contest", "ABC");
-                Names.Add("AtCoder Regular Contest", "ARC");
-                Names.Add("AtCoder Grand Contest","AGC");
                 
                 foreach(var ShortName in Names)
                     name = name.Replace(ShortName.Key, ShortName.Value);
@@ -108,29 +108,18 @@ namespace DiceBotConsole
                 contests[i].Name = name;
             }
 
-            // 既存のコンテストなら追加しない
-            for(int i = 0;i < OldContests.Count;i++)
-            {
-                contests.Remove(OldContests[i]);
-            }
-
             // コンテストをまとめる
             contests = SumContest(contests);
 
-            // 新しいコンテストをコンソールに表示
-            /*
-            foreach(Contest contest in contests)
+            // 既存のコンテストなら追加しない
+            for (int i = 0;i < OldContests.Count;i++)
             {
-                Console.WriteLine(contest.Name);
-                Console.WriteLine(contest.StartToEnd);
-                Console.WriteLine(contest.Link);
-                Console.WriteLine("-----");
+                contests.Remove(OldContests[i]);
             }
-            */
-
+            
             return contests;
         }
-
+        
         /// <summary>
         /// urlのページからhtml情報を取得する
         /// </summary>
